@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 
-const DNAHelix = () => {
+const DNAHelix = ({ highlightedRung, onRungHover }) => {
   const mountRef = useRef(null);
+  const helixGroupRef = useRef(null);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -20,6 +21,7 @@ const DNAHelix = () => {
 
     // Create DNA helix
     const helixGroup = new THREE.Group();
+    helixGroupRef.current = helixGroup;
     const helixHeight = 20;
     const helixRadius = 3;
     const rungs = 40;
@@ -52,7 +54,8 @@ const DNAHelix = () => {
     const strand2 = new THREE.Line(strand2Geometry, strand2Material);
     helixGroup.add(strand2);
 
-    // Rungs connecting the strands
+    // Rungs connecting the strands - store them for highlighting
+    const rungMeshes = [];
     for (let i = 0; i < rungs; i++) {
       const t = (i / (rungs - 1)) * helixHeight - helixHeight / 2;
       const angle = (i / (rungs - 1)) * Math.PI * 4;
@@ -63,8 +66,21 @@ const DNAHelix = () => {
       const rungGeometry = new THREE.BufferGeometry().setFromPoints([point1, point2]);
       const rungMaterial = new THREE.LineBasicMaterial({ color: 0xff4a00, opacity: 0.4, transparent: true });
       const rung = new THREE.Line(rungGeometry, rungMaterial);
+      rung.userData = { index: i };
       helixGroup.add(rung);
+      rungMeshes.push(rung);
     }
+
+    // Highlight specific rungs based on highlightedRung prop
+    rungMeshes.forEach((rung, index) => {
+      if (highlightedRung !== null && index === highlightedRung) {
+        rung.material.opacity = 1;
+        rung.material.color.setHex(0xffaa00);
+      } else {
+        rung.material.opacity = 0.4;
+        rung.material.color.setHex(0xff4a00);
+      }
+    });
 
     scene.add(helixGroup);
 
@@ -103,36 +119,38 @@ const DNAHelix = () => {
       }
       renderer.dispose();
     };
-  }, []);
+  }, [highlightedRung]);
 
   return <div ref={mountRef} className="w-full h-[600px] md:h-[700px]" />;
 };
 
 export default function DNASection() {
+  const [hoveredStep, setHoveredStep] = useState(null);
+
   const steps = [
     {
       number: 1,
       title: "Order Your Tests",
       description: "Choose genetics, at-home labs & hormones, food sensitivity, wearables, and gut microbiome testing.",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=400&fit=crop",
+      rungIndex: 8,
     },
     {
       number: 2,
       title: "Capture the Data",
       description: "Collect samples at home and connect your devices. Pryima ingests everything into one OS.",
-      image: "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=400&h=400&fit=crop",
+      rungIndex: 18,
     },
     {
       number: 3,
       title: "Your Health, Decoded",
       description: "Our AI engine reads your multi-omic data to surface patterns in metabolism, recovery, gut health, and more.",
-      image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400&h=400&fit=crop",
+      rungIndex: 28,
     },
     {
       number: 4,
       title: "Turn Insights into Action",
       description: "Precision actions, nutrition targets, and routines you can follow daily—then re-test to track progress.",
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop",
+      rungIndex: 36,
     },
   ];
 
@@ -158,12 +176,12 @@ export default function DNASection() {
         <div className="relative">
           {/* DNA Helix - Center */}
           <div className="hidden lg:block absolute left-1/2 top-0 -translate-x-1/2 w-[400px]">
-            <DNAHelix />
+            <DNAHelix highlightedRung={hoveredStep !== null ? steps[hoveredStep].rungIndex : null} />
           </div>
 
           {/* Mobile DNA */}
           <div className="lg:hidden mb-12">
-            <DNAHelix />
+            <DNAHelix highlightedRung={null} />
           </div>
 
           {/* Steps */}
@@ -174,12 +192,14 @@ export default function DNASection() {
                 className={`flex flex-col lg:flex-row items-center gap-8 ${
                   index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
                 }`}
+                onMouseEnter={() => setHoveredStep(index)}
+                onMouseLeave={() => setHoveredStep(null)}
               >
                 {/* Step Card */}
                 <div
                   className={`flex-1 ${index % 2 === 0 ? "lg:text-right lg:pr-12" : "lg:text-left lg:pl-12"}`}
                 >
-                  <div className="inline-block p-8 rounded-2xl bg-gradient-to-br from-black/80 to-[#050814]/80 border border-[#FF4A00]/30 backdrop-blur-md shadow-xl max-w-md">
+                  <div className="inline-block p-8 rounded-2xl bg-gradient-to-br from-black/80 to-[#050814]/80 border border-[#FF4A00]/30 backdrop-blur-md shadow-xl max-w-md hover:border-[#FF4A00] transition-all duration-300">
                     <div className="flex items-center gap-4 mb-4">
                       <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF4A00] to-[#FF6B00] flex items-center justify-center shadow-lg shadow-[#FF4A00]/30">
                         <span className="text-white font-bold text-xl">{step.number}</span>
@@ -191,27 +211,29 @@ export default function DNASection() {
                 </div>
 
                 {/* Spacer for helix on desktop */}
-                <div className="hidden lg:block w-[400px]" />
-
-                {/* Step Image */}
-                <div className="flex-1 flex justify-center">
-                  <div className="relative group">
-                    <div className="w-64 h-64 rounded-2xl overflow-hidden border-2 border-[#FF4A00]/30 shadow-xl">
-                      <img
-                        src={step.image}
-                        alt={step.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        style={{ filter: "grayscale(50%) sepia(30%) hue-rotate(-20deg) saturate(150%)" }}
+                <div className="hidden lg:block w-[400px] relative">
+                  {/* Peephole magnifier */}
+                  <div className={`absolute ${index % 2 === 0 ? "left-0" : "right-0"} top-1/2 -translate-y-1/2`}>
+                    <div className="relative">
+                      {/* Connection line */}
+                      <div
+                        className={`absolute top-1/2 ${index % 2 === 0 ? "right-full" : "left-full"} w-16 h-0.5 bg-gradient-to-${index % 2 === 0 ? "r" : "l"} from-[#FF4A00] to-transparent`}
                       />
+                      
+                      {/* Magnifier circle */}
+                      <div className="w-20 h-20 rounded-full border-4 border-[#FF4A00] bg-black/60 backdrop-blur-sm flex items-center justify-center shadow-lg shadow-[#FF4A00]/50 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#FF4A00]/20 to-transparent" />
+                        <div className="relative z-10 text-center">
+                          <div className="w-2 h-2 bg-[#FF4A00] rounded-full mx-auto mb-1 animate-pulse" />
+                          <div className="text-[10px] text-[#FF4A00] font-bold">RUNG {step.rungIndex}</div>
+                        </div>
+                      </div>
                     </div>
-                    {/* Magnifier line connecting to helix */}
-                    <div
-                      className={`hidden lg:block absolute top-1/2 ${
-                        index % 2 === 0 ? "left-full" : "right-full"
-                      } w-24 h-0.5 bg-gradient-to-r from-[#FF4A00] to-transparent`}
-                    />
                   </div>
                 </div>
+
+                {/* Spacer on the other side */}
+                <div className="flex-1" />
               </div>
             ))}
           </div>
