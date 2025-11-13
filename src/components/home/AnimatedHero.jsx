@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const LogoRain = () => {
   const canvasRef = useRef(null);
+  const logoImageRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -12,6 +13,11 @@ const LogoRain = () => {
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
+    // Load the logo image
+    const logoImage = new Image();
+    logoImage.src = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/9f96dd451_pryima.png";
+    logoImageRef.current = logoImage;
 
     const drops = [];
     const dropCount = 30;
@@ -26,30 +32,17 @@ const LogoRain = () => {
       });
     }
 
-    const drawLogo = (x, y, size, opacity) => {
-      ctx.save();
-      ctx.globalAlpha = opacity;
-      ctx.strokeStyle = "#FF4A00";
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(x, y, size * 0.7, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(x, y - size * 0.7);
-      ctx.lineTo(x, y + size * 0.7);
-      ctx.moveTo(x, y - size * 0.7);
-      ctx.lineTo(x + size * 0.3, y - size * 0.4);
-      ctx.moveTo(x, y - size * 0.7);
-      ctx.lineTo(x - size * 0.3, y - size * 0.4);
-      ctx.stroke();
-      ctx.restore();
-    };
-
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       drops.forEach((drop) => {
-        drawLogo(drop.x, drop.y, drop.size, drop.opacity);
+        if (logoImage.complete) {
+          ctx.save();
+          ctx.globalAlpha = drop.opacity;
+          ctx.drawImage(logoImage, drop.x - drop.size / 2, drop.y - drop.size / 2, drop.size, drop.size);
+          ctx.restore();
+        }
+        
         drop.y += drop.speed;
 
         if (drop.y > canvas.height + 50) {
@@ -61,7 +54,10 @@ const LogoRain = () => {
       requestAnimationFrame(animate);
     };
 
-    animate();
+    // Wait for image to load before starting animation
+    logoImage.onload = () => {
+      animate();
+    };
 
     const handleResize = () => {
       canvas.width = window.innerWidth;
@@ -168,10 +164,11 @@ export default function AnimatedHero() {
             <div className="absolute top-0 right-0 md:top-8 md:right-8 z-20 transform rotate-12">
               <div className="w-20 h-24 md:w-24 md:h-28 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border-2 border-gray-700 shadow-xl flex items-center justify-center p-2">
                 <div className="w-full h-full rounded-xl bg-black flex items-center justify-center">
-                  <svg viewBox="0 0 100 100" className="w-10 h-10">
-                    <circle cx="50" cy="50" r="30" fill="none" stroke="#FF4A00" strokeWidth="3" />
-                    <path d="M 50 25 L 50 75 M 50 25 L 62 37 M 50 25 L 38 37" stroke="#FF4A00" strokeWidth="3" strokeLinecap="round" />
-                  </svg>
+                  <img 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/9f96dd451_pryima.png" 
+                    alt="Pryima on Watch" 
+                    className="w-10 h-10 object-contain"
+                  />
                 </div>
               </div>
             </div>

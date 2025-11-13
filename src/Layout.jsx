@@ -57,11 +57,12 @@ export default function Layout({ children, currentPageName }) {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[#FF4A00] to-[#FF6B00] flex items-center justify-center shadow-lg shadow-[#FF4A00]/20 group-hover:shadow-[#FF4A00]/40 transition-all">
-                <svg viewBox="0 0 100 100" className="w-5 h-5 md:w-6 md:h-6">
-                  <circle cx="50" cy="50" r="35" fill="none" stroke="#fff" strokeWidth="4" />
-                  <path d="M 50 20 L 50 80 M 50 20 L 65 35 M 50 20 L 35 35" stroke="#fff" strokeWidth="4" strokeLinecap="round" />
-                </svg>
+              <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center">
+                <img 
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/9f96dd451_pryima.png" 
+                  alt="Pryima Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Pryima Health OS
@@ -201,11 +202,12 @@ export default function Layout({ children, currentPageName }) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF4A00] to-[#FF6B00] flex items-center justify-center">
-                  <svg viewBox="0 0 100 100" className="w-6 h-6">
-                    <circle cx="50" cy="50" r="35" fill="none" stroke="#fff" strokeWidth="4" />
-                    <path d="M 50 20 L 50 80 M 50 20 L 65 35 M 50 20 L 35 35" stroke="#fff" strokeWidth="4" strokeLinecap="round" />
-                  </svg>
+                <div className="w-10 h-10 flex items-center justify-center">
+                  <img 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/9f96dd451_pryima.png" 
+                    alt="Pryima Logo" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <span className="text-xl font-bold">Pryima Health OS</span>
               </div>
