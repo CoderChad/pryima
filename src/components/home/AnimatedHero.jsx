@@ -71,6 +71,32 @@ const LogoRain = () => {
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />;
 };
 
+const TypewriterTitle = () => {
+  const [text, setText] = useState("");
+  const fullText = "Pryima";
+
+  useEffect(() => {
+    let index = 0;
+    const timer = setInterval(() => {
+      if (index <= fullText.length) {
+        setText(fullText.slice(0, index));
+        index++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 200);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <span className="block bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+      {text}
+      <span className="animate-pulse text-[#FF4A00]">|</span>
+    </span>
+  );
+};
+
 const Lightning = () => {
   const [flash, setFlash] = useState(false);
 
@@ -116,10 +142,8 @@ export default function AnimatedHero() {
             </div>
 
             <div className="space-y-4">
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                <span className="block bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                  Pryima
-                </span>
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight min-h-[160px] md:min-h-[220px]">
+                <TypewriterTitle />
                 <span className="block bg-gradient-to-r from-[#FF4A00] to-[#FF6B00] bg-clip-text text-transparent">
                   Health OS
                 </span>

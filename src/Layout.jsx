@@ -35,6 +35,7 @@ export default function Layout({ children, currentPageName }) {
     { name: "Home", path: "/" },
     { name: "Marketplace", path: "/marketplace" },
     { name: "How It Works", path: "/how-it-works" },
+    { name: "Technology", path: "/technology" },
     { name: "Pricing", path: "/pricing" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },

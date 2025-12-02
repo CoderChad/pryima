@@ -4,7 +4,8 @@ import Pricing from './pages/Pricing';
 import HowItWorks from './pages/HowItWorks';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Layout from './Layout.jsx';
+import Technology from './pages/Technology';
+import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
@@ -14,10 +15,11 @@ export const PAGES = {
     "HowItWorks": HowItWorks,
     "About": About,
     "Contact": Contact,
+    "Technology": Technology,
 }
 
 export const pagesConfig = {
     mainPage: "Home",
     Pages: PAGES,
-    Layout: Layout,
+    Layout: __Layout,
 };
