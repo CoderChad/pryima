@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -193,16 +194,20 @@ export default function AnimatedHero() {
 
           {/* Right Content - Phone Mockup with Watch & CGM */}
           <div className="relative flex items-center justify-center">
-            {/* Main Phone Mockup */}
-            <div className="relative z-10">
+            {/* Main Phone Mockup - Floating with Parallax */}
+            <motion.div 
+              animate={{ y: [0, -20, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="relative z-10"
+            >
               <div className="w-[300px] md:w-[350px] rounded-[3rem] border-8 border-gray-800 overflow-hidden shadow-2xl shadow-[#FF4A00]/20">
                 <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/user_69156ba898a329326e2742c5/5780c4f0e_mockup.png"
+                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/1e17eb06a_20250914_1827_FuturisticHealthDashboard_simple_compose_01k558rrn8f89v9e3wnjm47490.png"
                   alt="Pryima Health OS Dashboard"
                   className="w-full h-auto"
                 />
               </div>
-            </div>
+            </motion.div>
 
             {/* Apple Watch - Top Right */}
             <div className="absolute top-0 right-0 md:top-8 md:right-8 z-20 transform rotate-12">
