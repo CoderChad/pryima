@@ -136,8 +136,9 @@ export default function AnimatedHero() {
           {/* Left Content */}
           <div className="space-y-8">
             <div className="inline-block">
-              <div className="px-4 py-2 rounded-full bg-[#FF4A00]/20 border border-[#FF4A00]/30 backdrop-blur-sm">
-                <span className="text-white text-sm font-medium">Your Health, Decoded</span>
+              <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-[#FF4A00]/10 border border-[#FF4A00]/30 backdrop-blur-sm animate-pulse-slow">
+                <div className="w-2 h-2 rounded-full bg-[#FF4A00] animate-pulse"></div>
+                <span className="text-white text-sm font-medium">Join 10,000+ High Performers</span>
               </div>
             </div>
 
@@ -152,23 +153,42 @@ export default function AnimatedHero() {
               <p className="text-lg md:text-xl text-gray-400 max-w-xl leading-relaxed">
                 An AI Health OS that turns genetics, labs, microbiome, and wearables into daily actions.
               </p>
+
+              {/* Social Proof Teaser */}
+              <div className="flex items-center gap-4 py-2 overflow-hidden">
+                <div className="flex -space-x-2">
+                  {[1,2,3].map(i => (
+                    <div key={i} className="w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-xs text-white">
+                      {String.fromCharCode(64+i)}
+                    </div>
+                  ))}
+                </div>
+                <div className="text-sm text-gray-400">
+                  <span className="text-white font-bold">"Reduced Biological Age by 5 Years"</span> - Sarah K.
+                </div>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/signup">
-                <Button className="bg-[#FF4A00] hover:bg-[#FF5A10] text-white px-8 py-6 text-lg font-semibold shadow-lg shadow-[#FF4A00]/30 hover:shadow-[#FF4A00]/50 transition-all">
-                  Get Early Access
+                <Button className="relative bg-[#FF4A00] hover:bg-[#FF5A10] text-white px-8 py-6 text-lg font-semibold shadow-lg shadow-[#FF4A00]/30 hover:shadow-[#FF4A00]/50 transition-all overflow-hidden group">
+                  <span className="relative z-10">Get Early Access</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                 </Button>
               </Link>
-              <Link to="/marketplace">
+              <Link to="/how-it-works">
                 <Button
                   variant="outline"
                   className="border-2 border-[#FF4A00] text-[#FF4A00] hover:bg-[#FF4A00] hover:text-white px-8 py-6 text-lg font-semibold transition-all"
                 >
-                  Explore Marketplace
+                  See How It Works
                 </Button>
               </Link>
             </div>
+
+            <p className="text-xs text-gray-500 uppercase tracking-widest">
+              Limited spots available for Founding Cohort
+            </p>
           </div>
 
           {/* Right Content - Phone Mockup with Watch & CGM */}
