@@ -2,7 +2,6 @@ import React from "react";
 import AnimatedHero from "../components/home/AnimatedHero";
 import DNASection from "../components/home/DNASection";
 import FeatureShowcase from "../components/home/FeatureShowcase";
-import FeatureShowcase from "../components/home/FeatureShowcase";
 import PersonasSection from "../components/home/PersonasSection";
 import WhyPryima from "../components/home/WhyPryima";
 import QuizPreview from "../components/home/QuizPreview";
