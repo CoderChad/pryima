@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Dna, Activity, Apple, Watch, Microscope, ShoppingCart } from "lucide-react";
 
 export default function Marketplace() {
