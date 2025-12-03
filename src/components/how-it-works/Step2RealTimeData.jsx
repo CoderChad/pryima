@@ -1,15 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Watch, Smartphone, Heart, Zap } from "lucide-react";
+import { Smartphone, Watch, Activity, Heart, Moon, Utensils } from "lucide-react";
 
 export default function Step2RealTimeData() {
   return (
-    <section className="py-24 bg-[#050814] relative overflow-hidden border-t border-white/5">
+    <section className="py-24 bg-[#050814] relative overflow-hidden">
+        {/* Background Texture */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Visual Content (Left on Desktop) */}
+            {/* Visual Content (Left) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -17,44 +18,36 @@ export default function Step2RealTimeData() {
             transition={{ duration: 0.6 }}
             className="relative order-2 lg:order-1"
           >
-            <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-black/50 shadow-2xl p-8">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[#00F0FF]/10 rounded-full blur-3xl -z-10" />
-              
-              <div className="relative z-10 flex flex-col items-center">
-                {/* Central Hub */}
-                <div className="w-24 h-24 rounded-full bg-black border-2 border-[#00F0FF] shadow-[0_0_30px_rgba(0,240,255,0.3)] flex items-center justify-center mb-12 z-20 relative">
-                    <div className="absolute inset-0 rounded-full border border-[#00F0FF] animate-ping opacity-20"></div>
-                    <div className="text-white font-bold text-xl tracking-tighter">PRYIMA</div>
-                </div>
-                
-                {/* Connecting Lines (simplified visuals) */}
-                <div className="absolute top-12 w-full h-full flex justify-center">
-                    <div className="w-px h-32 bg-gradient-to-b from-[#00F0FF] to-transparent opacity-50"></div>
-                </div>
+            <div className="absolute inset-0 bg-gradient-to-bl from-[#00F0FF]/10 to-transparent rounded-3xl blur-2xl" />
+            <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black/40 backdrop-blur-sm aspect-square md:aspect-[4/3] flex items-center justify-center">
+               {/* Data Stream Simulation */}
+               <div className="relative w-64 h-64">
+                  <div className="absolute inset-0 rounded-full border border-[#00F0FF]/20 animate-spin-slow"></div>
+                  <div className="absolute inset-4 rounded-full border border-[#FF4A00]/20 animate-spin-reverse-slow"></div>
+                  
+                  {/* Central Core */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-24 h-24 rounded-full bg-black border border-white/10 flex items-center justify-center shadow-[0_0_30px_rgba(0,240,255,0.3)]">
+                        <Activity className="w-10 h-10 text-[#00F0FF]" />
+                    </div>
+                  </div>
 
-                {/* Device Grid */}
-                <div className="grid grid-cols-2 gap-6 w-full">
-                    {[
-                        { name: "Apple Health", icon: Smartphone, val: "Syncing..." },
-                        { name: "Oura / Whoop", icon: Watch, val: "98% Recovery" },
-                        { name: "Live HR", icon: Heart, val: "64 BPM" },
-                        { name: "Activity", icon: Zap, val: "450 Active Cal" }
-                    ].map((item, i) => (
-                        <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-4 backdrop-blur-sm hover:bg-white/10 transition-colors">
-                            <div className="flex items-center justify-between mb-2">
-                                <item.icon className="text-[#00F0FF] w-5 h-5" />
-                                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                            </div>
-                            <div className="text-gray-400 text-xs mb-1">{item.name}</div>
-                            <div className="text-white font-mono text-sm">{item.val}</div>
-                        </div>
-                    ))}
-                </div>
-              </div>
+                  {/* Satellites */}
+                  {[
+                    { icon: Watch, color: "text-[#FF4A00]", top: "0", left: "50%" },
+                    { icon: Smartphone, color: "text-[#00F0FF]", bottom: "0", left: "50%" },
+                    { icon: Heart, color: "text-purple-500", top: "50%", left: "0" },
+                    { icon: Moon, color: "text-indigo-500", top: "50%", right: "0" },
+                  ].map((item, i) => (
+                      <div key={i} className={`absolute w-12 h-12 rounded-full bg-[#0A0F1E] border border-white/10 flex items-center justify-center transform -translate-x-1/2 -translate-y-1/2 shadow-lg`} style={{ top: item.top, left: item.left, right: item.right, bottom: item.bottom }}>
+                          <item.icon className={`w-5 h-5 ${item.color}`} />
+                      </div>
+                  ))}
+               </div>
             </div>
           </motion.div>
 
-          {/* Text Content (Right on Desktop) */}
+          {/* Text Content (Right) */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -85,7 +78,7 @@ export default function Step2RealTimeData() {
                   "Glucose curves from your CGM (if included)"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] mt-2.5 flex-shrink-0 shadow-[0_0_8px_rgba(0,240,255,0.5)]" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#00F0FF] mt-2.5 flex-shrink-0" />
                     <span className="text-gray-300">{item}</span>
                   </li>
                 ))}
@@ -94,8 +87,8 @@ export default function Step2RealTimeData() {
               <p>
                 These streams show how your biology behaves in the real world — not just in a lab report.
               </p>
-
-              <p className="text-[#00F0FF] italic font-medium pt-2">
+              
+               <p className="text-[#00F0FF] italic font-medium">
                 Now, Pryima can start connecting the dots between what you do and how your body responds.
               </p>
             </div>

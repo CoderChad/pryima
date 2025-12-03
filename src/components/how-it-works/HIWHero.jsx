@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Activity, Dna, Brain } from "lucide-react";
+import { ArrowRight, Activity } from "lucide-react";
 
 export default function HIWHero() {
   return (
@@ -59,7 +59,6 @@ export default function HIWHero() {
             <div className="relative rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl p-2 shadow-2xl shadow-[#00F0FF]/10">
               <div className="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/5 to-transparent rounded-3xl pointer-events-none"></div>
               
-              {/* Placeholder for Futuristic Interface */}
               <div className="relative rounded-2xl overflow-hidden aspect-square bg-[#02040A]">
                  <img 
                   src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop" 
@@ -67,7 +66,6 @@ export default function HIWHero() {
                   className="w-full h-full object-cover opacity-60 mix-blend-screen"
                 />
                 
-                {/* Overlay UI Elements */}
                 <div className="absolute top-8 left-8 right-8 bottom-8 border border-[#00F0FF]/30 rounded-xl p-6 flex flex-col justify-between">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-3">
