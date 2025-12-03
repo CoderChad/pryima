@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 
@@ -67,14 +66,14 @@ export default function PersonasSection() {
               Whether you're launching groundbreaking ventures, smashing world records, or hacking the code of aging—Pryima's <span className="text-white font-semibold">AI-powered platform</span> decodes your biology to unleash peak performance.
             </p>
             
-            <Link to="/signup">
-              <Button
-                className="bg-white text-black hover:bg-gray-200 px-8 py-6 text-lg font-bold rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all transform hover:-translate-y-1"
-              >
-                Discover Your Persona
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+            <Button
+              disabled
+              className="bg-white/50 text-black/50 px-8 py-6 text-lg font-bold rounded-xl cursor-not-allowed opacity-60"
+              style={{ pointerEvents: 'none' }}
+            >
+              Discover Your Persona
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
           </motion.div>
         </div>
 
