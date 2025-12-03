@@ -5,6 +5,16 @@ import { Watch, Activity, Zap, Smartphone } from "lucide-react";
 export default function WearablesIntegration() {
   return (
     <section className="py-24 bg-[#050814] relative overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050814] via-[#050814]/95 to-[#050814]/80 z-10" />
+        <img 
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/17ec3cffd_IMG_0164.jpg" 
+          alt="Wearables Background" 
+          className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
+        />
+      </div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
