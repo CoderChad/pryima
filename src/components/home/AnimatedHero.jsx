@@ -130,6 +130,15 @@ export default function AnimatedHero() {
       {/* Background Effects */}
       <LogoRain />
       <Lightning />
+      
+      {/* Background Logo */}
+      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+        <img 
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/876b3378f_20250914_2023_BlackBackgroundLogo_remix_01k55fe37weqq81p9zc23pxbc61.png" 
+          alt="Pryima Background Logo" 
+          className="w-[80%] max-w-[1000px] object-contain opacity-20 mix-blend-screen"
+        />
+      </div>
 
       {/* Hero Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
@@ -178,12 +187,6 @@ export default function AnimatedHero() {
                 <span className="relative z-10">Claim Your Spot Now – Save 50%</span>
               </Button>
             </Link>
-            <button className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-6 text-lg font-semibold text-white hover:text-[#FF4A00] transition-colors group">
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#FF4A00] transition-colors">
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-              </div>
-              Watch the Demo
-            </button>
           </div>
 
           <div className="flex items-center gap-2 text-sm text-[#FF4A00]">
