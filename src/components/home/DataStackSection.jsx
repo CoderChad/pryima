@@ -36,14 +36,14 @@ export default function DataStackSection() {
   ];
 
   return (
-    <section className="relative py-20 overflow-hidden bg-[#02040A]">
+    <section className="relative py-20 bg-[#02040A] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[#02040A]/80 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#02040A] via-[#02040A]/80 to-[#02040A] z-10" />
         <img 
           src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/6dc6b8c71_IMG_0157.jpg" 
-          alt="Health Stack Background" 
-          className="w-full h-full object-cover opacity-60 grayscale"
+          alt="Background" 
+          className="w-full h-full object-cover opacity-50"
         />
       </div>
 
