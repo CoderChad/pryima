@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Brain, Activity, Globe, Database, Shield, Zap, Heart } from "lucide-react";
+// Import portrait image - replace with your actual image file
+// import chadPortrait from "@/assets/chad-thomas-portrait.jpg";
 
 export default function About() {
   const visionPoints = [
@@ -51,16 +53,51 @@ export default function About() {
         
         {/* Introduction & Portrait */}
         <section className="max-w-3xl mx-auto">
-          <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
-            <p>
-              For years, I obsessed over understanding why some people seem to unlock high-performance lives—stable energy, better recovery, sharper cognition, faster fat loss—while others with the same discipline couldn’t.
-            </p>
-            <p>
-              I realized the difference wasn’t motivation or willpower. <strong className="text-white">The difference was information.</strong> Some people had access to structured data, clinical insight, and personalized coaching. Most people didn’t.
-            </p>
-            <p className="text-white font-medium border-l-4 border-[#FF4A00] pl-4">
-              Pryima was born to close that gap.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start mb-8">
+            {/* Portrait Image */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="relative rounded-2xl overflow-hidden border-2 border-[#FF4A00]/30 shadow-2xl shadow-[#FF4A00]/20 bg-gradient-to-br from-[#FF4A00]/10 to-cyan-500/10">
+                <img
+                  src="/prof1.jpg"
+                  alt="Chad Thomas - Founder of Pryima"
+                  className="w-full h-auto object-cover"
+                  onError={(e) => {
+                    // Hide image if it fails to load, show placeholder
+                    e.target.style.display = 'none';
+                    const placeholder = e.target.nextElementSibling;
+                    if (placeholder) placeholder.style.display = 'flex';
+                  }}
+                />
+                {/* Placeholder shown if image doesn't exist yet */}
+                <div className="hidden absolute inset-0 bg-gradient-to-br from-[#FF4A00]/20 to-cyan-500/20 flex items-center justify-center">
+                  <div className="text-center p-6">
+                    <div className="w-24 h-24 rounded-full bg-[#FF4A00]/30 mx-auto mb-4 flex items-center justify-center">
+                      <Heart className="w-12 h-12 text-[#FF4A00]/50" />
+                    </div>
+                    <p className="text-gray-400 text-sm mb-2">Portrait image</p>
+                    <p className="text-gray-500 text-xs">Place chad-thomas-portrait.jpg in /public folder</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Text Content */}
+            <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
+              <p>
+                For years, I obsessed over understanding why some people seem to unlock high-performance lives—stable energy, better recovery, sharper cognition, faster fat loss—while others with the same discipline couldn't.
+              </p>
+              <p>
+                I realized the difference wasn't motivation or willpower. <strong className="text-white">The difference was information.</strong> Some people had access to structured data, clinical insight, and personalized coaching. Most people didn't.
+              </p>
+              <p className="text-white font-medium border-l-4 border-[#FF4A00] pl-4">
+                Pryima was born to close that gap.
+              </p>
+            </div>
           </div>
         </section>
 
