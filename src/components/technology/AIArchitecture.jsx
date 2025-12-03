@@ -24,8 +24,18 @@ export default function AIArchitecture() {
   ];
 
   return (
-    <section className="py-24 bg-[#02040A]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-[#02040A] relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[#02040A]/85 z-10" />
+        <img 
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/0e5fa9935_IMG_0169.jpg" 
+          alt="AI Architecture Background" 
+          className="w-full h-full object-cover opacity-60"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Custom AI Built on <br/>
