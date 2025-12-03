@@ -223,7 +223,8 @@ export default function Layout({ children, currentPageName }) {
                 <li><Link to="/pricing" className="text-gray-400 hover:text-[#FF4A00] transition-colors">Pricing</Link></li>
                 <li><Link to="/about" className="text-gray-400 hover:text-[#FF4A00] transition-colors">About</Link></li>
                 <li><Link to="/contact" className="text-gray-400 hover:text-[#FF4A00] transition-colors">Contact</Link></li>
-              </ul>
+                <li><Link to="/faq" className="text-gray-400 hover:text-[#FF4A00] transition-colors">FAQ</Link></li>
+                </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4 text-[#FF4A00]">Legal</h4>

@@ -136,76 +136,100 @@ export default function AnimatedHero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
-            <div className="inline-block">
-              <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-[#FF4A00]/10 border border-[#FF4A00]/30 backdrop-blur-sm animate-pulse-slow">
-                <div className="w-2 h-2 rounded-full bg-[#FF4A00] animate-pulse"></div>
-                <span className="text-white text-sm font-medium">Join 10,000+ High Performers</span>
-              </div>
+          <div className="inline-block">
+            <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-[#FF4A00]/10 border border-[#FF4A00]/30 backdrop-blur-sm animate-pulse-slow">
+              <div className="w-2 h-2 rounded-full bg-[#FF4A00] animate-pulse"></div>
+              <span className="text-white text-sm font-medium">Join 10,000+ High Performers</span>
             </div>
-
-            <div className="space-y-4">
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight min-h-[160px] md:min-h-[220px]">
-                <TypewriterTitle />
-                <span className="block bg-gradient-to-r from-[#FF4A00] to-[#FF6B00] bg-clip-text text-transparent">
-                  Health OS
-                </span>
-              </h1>
-
-              <p className="text-lg md:text-xl text-gray-400 max-w-xl leading-relaxed">
-                An AI Health OS that turns genetics, labs, microbiome, and wearables into daily actions.
-              </p>
-
-              {/* Social Proof Teaser */}
-              <div className="flex items-center gap-4 py-2 overflow-hidden">
-                <div className="flex -space-x-2">
-                  {[1,2,3].map(i => (
-                    <div key={i} className="w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-xs text-white">
-                      {String.fromCharCode(64+i)}
-                    </div>
-                  ))}
-                </div>
-                <div className="text-sm text-gray-400">
-                  <span className="text-white font-bold">"Reduced Biological Age by 5 Years"</span> - Sarah K.
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/signup">
-                <Button className="relative bg-[#FF4A00] hover:bg-[#FF5A10] text-white px-8 py-6 text-lg font-semibold shadow-lg shadow-[#FF4A00]/30 hover:shadow-[#FF4A00]/50 transition-all overflow-hidden group">
-                  <span className="relative z-10">Get Early Access</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                </Button>
-              </Link>
-              <Link to="/how-it-works">
-                <Button
-                  variant="outline"
-                  className="border-2 border-[#FF4A00] text-[#FF4A00] hover:bg-[#FF4A00] hover:text-white px-8 py-6 text-lg font-semibold transition-all"
-                >
-                  See How It Works
-                </Button>
-              </Link>
-            </div>
-
-            <p className="text-xs text-gray-500 uppercase tracking-widest">
-              Limited spots available for Founding Cohort
-            </p>
           </div>
 
-          {/* Right Content - Phone Mockup with Watch & CGM */}
+          <div className="space-y-4">
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+              Unlock Peak Performance and <br/>
+              <span className="bg-gradient-to-r from-[#FF4A00] to-[#FF6B00] bg-clip-text text-transparent">
+                Extend Your Healthspan
+              </span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed">
+              Our AI decodes your unique biology—genetics, labs, microbiome, and wearables—to deliver personalized daily actions that reduce biological age, skyrocket energy, and optimize longevity.
+            </p>
+
+            {/* Enhanced Social Proof Stats */}
+            <div className="grid grid-cols-3 gap-4 py-4 border-y border-white/5 bg-white/5 rounded-xl p-4">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-[#FF4A00]">80%</div>
+                <div className="text-xs text-gray-400">Optimize Biomarkers<br/>in 30 Days</div>
+              </div>
+              <div className="text-center border-l border-white/10">
+                <div className="text-2xl font-bold text-[#FF4A00]">65%</div>
+                <div className="text-xs text-gray-400">Reduce Biological<br/>Age in 3 Mos</div>
+              </div>
+              <div className="text-center border-l border-white/10">
+                <div className="text-2xl font-bold text-[#FF4A00]">92%</div>
+                <div className="text-xs text-gray-400">Boost Stress<br/>Resilience</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link to="/signup">
+              <Button className="relative w-full sm:w-auto bg-[#FF4A00] hover:bg-[#FF5A10] text-white px-8 py-6 text-lg font-bold shadow-lg shadow-[#FF4A00]/30 hover:shadow-[#FF4A00]/50 transition-all overflow-hidden group animate-pulse-slow">
+                <span className="relative z-10">Claim Your Spot Now – Save 50%</span>
+              </Button>
+            </Link>
+            <button className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-6 text-lg font-semibold text-white hover:text-[#FF4A00] transition-colors group">
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#FF4A00] transition-colors">
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              Watch the Demo
+            </button>
+          </div>
+
+          <div className="flex items-center gap-2 text-sm text-[#FF4A00]">
+            <div className="w-2 h-2 rounded-full bg-[#FF4A00] animate-pulse" />
+            <span className="font-bold">Offer Ends in 48 Hours</span>
+            <span className="text-gray-500">– Join Before Spots Fill Up!</span>
+          </div>
+          </div>
+
+          {/* Right Content - Video/App Demo */}
           <div className="relative flex items-center justify-center">
-            {/* Main Phone Mockup - Floating with Parallax */}
+            {/* Main App Demo - Floating with Parallax */}
             <motion.div 
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               className="relative z-10"
             >
-              <div className="w-[300px] md:w-[350px] rounded-[3rem] border-8 border-gray-800 overflow-hidden shadow-2xl shadow-[#FF4A00]/20">
-                <img
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/1e17eb06a_20250914_1827_FuturisticHealthDashboard_simple_compose_01k558rrn8f89v9e3wnjm47490.png"
-                  alt="Pryima Health OS Dashboard"
-                  className="w-full h-auto"
-                />
+              <div className="w-[300px] md:w-[380px] rounded-[2rem] border border-[#FF4A00]/30 bg-black/90 overflow-hidden shadow-2xl shadow-[#FF4A00]/20 backdrop-blur-xl">
+                {/* Faux Video Player UI */}
+                <div className="relative aspect-[9/16] bg-gray-900">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                     {/* Placeholder for video loop - using image for now but styled as video */}
+                     <img
+                      src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/1e17eb06a_20250914_1827_FuturisticHealthDashboard_simple_compose_01k558rrn8f89v9e3wnjm47490.png"
+                      alt="App Demo"
+                      className="w-full h-full object-cover opacity-80"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
+                    
+                    {/* Play Button Overlay indicating video */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-full bg-[#FF4A00]/90 flex items-center justify-center shadow-lg shadow-[#FF4A00]/50 animate-pulse">
+                            <svg className="w-6 h-6 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                    </div>
+
+                    {/* Floating UI Elements to simulate live data */}
+                    <div className="absolute bottom-6 left-4 right-4">
+                        <div className="bg-white/10 backdrop-blur-md p-3 rounded-lg border border-white/10 mb-2">
+                            <div className="text-xs text-cyan-400 mb-1">Real-time Analysis</div>
+                            <div className="text-sm text-white font-bold">Glucose Spike Detected</div>
+                            <div className="text-xs text-gray-400">Take a 10min walk to optimize.</div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
 

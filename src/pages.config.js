@@ -5,6 +5,7 @@ import HowItWorks from './pages/HowItWorks';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Technology from './pages/Technology';
+import FAQ from './pages/FAQ';
 import __Layout from './Layout.jsx';
 
 
@@ -16,6 +17,7 @@ export const PAGES = {
     "About": About,
     "Contact": Contact,
     "Technology": Technology,
+    "FAQ": FAQ,
 }
 
 export const pagesConfig = {

@@ -6,6 +6,22 @@ import { Link } from "react-router-dom";
 export default function PricingSection() {
   const tiers = [
     {
+      badge: "Entry",
+      name: "Genetics Only",
+      price: "$249",
+      subtitle: "one-time",
+      description: "Just the SelfDecode genetic test kit. Perfect for getting started with your raw DNA data.",
+      features: [
+        "SelfDecode Genetic Test Kit",
+        "Raw Data Access",
+        "Basic Genetic Reports",
+        "Does NOT include Pryima Health OS AI",
+      ],
+      value: "Entry Level Pricing: $249",
+      cta: "Buy Genetics Kit",
+      highlight: false,
+    },
+    {
       badge: "Starter",
       name: "Core Genome",
       price: "$500",

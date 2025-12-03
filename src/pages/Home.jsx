@@ -7,7 +7,7 @@ import WhyPryima from "../components/home/WhyPryima";
 import QuizPreview from "../components/home/QuizPreview";
 import DataStackSection from "../components/home/DataStackSection";
 import PricingSection from "../components/home/PricingSection";
-import FAQ from "../components/home/FAQ";
+import WearablesIntegration from "../components/home/WearablesIntegration";
 import BottomCTA from "../components/home/BottomCTA";
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
       <QuizPreview />
       <DataStackSection />
       <PricingSection />
-      <FAQ />
+      <WearablesIntegration />
       <BottomCTA />
     </div>
   );

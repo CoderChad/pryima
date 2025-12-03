@@ -18,6 +18,24 @@ export default function About() {
         </div>
 
         <div className="space-y-12">
+          {/* About Me / Founder Section */}
+          <div className="rounded-2xl border border-[#FF4A00]/30 bg-gradient-to-br from-black/80 to-[#050814]/80 backdrop-blur-md p-8 flex flex-col md:flex-row gap-8 items-center">
+            <div className="w-48 h-48 flex-shrink-0 rounded-full overflow-hidden border-4 border-[#FF4A00]/20 bg-gray-800">
+              <img 
+                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop" 
+                alt="Founder" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex-1 text-center md:text-left">
+              <h2 className="text-3xl font-bold text-white mb-2">Meet the Founder</h2>
+              <p className="text-[#FF4A00] font-medium mb-4">CEO & Founder</p>
+              <p className="text-gray-400 leading-relaxed">
+                "I built Pryima because I was tired of having data scattered across five different apps. I wanted a single place where my genetics, labs, and daily metrics could talk to each other—and actually tell me what to do. This isn't just a dashboard; it's the health OS I wish I had ten years ago."
+              </p>
+            </div>
+          </div>
+
           <div className="rounded-2xl border border-[#FF4A00]/30 bg-gradient-to-br from-black/80 to-[#050814]/80 backdrop-blur-md p-8">
             <h2 className="text-3xl font-bold text-white mb-4">Our Mission</h2>
             <p className="text-gray-400 text-lg leading-relaxed">

@@ -56,54 +56,50 @@ export default function FeatureShowcase() {
           </p>
         </div>
 
-        <div className="space-y-32">
-          {features.map((feature, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}
-            >
-              {/* Image Content */}
-              <div className="w-full lg:w-1/2 relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FF4A00] to-cyan-500 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-700" />
-                <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#050814] shadow-2xl">
-                  <img 
-                    src={feature.image} 
-                    alt={feature.title}
-                    className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
-                  />
-                  
-                  {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#02040A] via-transparent to-transparent opacity-50" />
+        {/* Horizontal Carousel */}
+        <div className="relative overflow-x-auto pb-12 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
+          <div className="flex gap-8 w-max">
+            {features.map((feature, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="w-[85vw] md:w-[600px] flex-shrink-0 relative group rounded-3xl border border-white/10 bg-[#050814] overflow-hidden"
+              >
+                {/* Image Top */}
+                <div className="relative aspect-video overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050814] to-transparent opacity-80 z-10" />
+                    <img 
+                        src={feature.image} 
+                        alt={feature.title}
+                        className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                    />
                 </div>
-              </div>
 
-              {/* Text Content */}
-              <div className="w-full lg:w-1/2 space-y-6">
-                <div className={`w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center ${feature.color}`}>
-                  <feature.icon size={24} />
-                </div>
-                
-                <h3 className="text-3xl font-bold text-white">
-                  {feature.title}
-                </h3>
-                
-                <p className="text-gray-400 text-lg leading-relaxed">
-                  {feature.description}
-                </p>
+                {/* Content Bottom */}
+                <div className="p-8 relative z-20 -mt-20">
+                    <div className={`w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 ${feature.color} backdrop-blur-md`}>
+                        <feature.icon size={24} />
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold text-white mb-3">
+                        {feature.title}
+                    </h3>
+                    
+                    <p className="text-gray-400 leading-relaxed mb-6">
+                        {feature.description}
+                    </p>
 
-                <div className="pt-4">
-                  <button className="text-sm font-bold text-white hover:text-[#FF4A00] transition-colors flex items-center gap-2 group">
-                    Explore Feature
-                    <div className="w-8 h-[1px] bg-white/30 group-hover:w-12 group-hover:bg-[#FF4A00] transition-all" />
-                  </button>
+                    <button className="text-sm font-bold text-white hover:text-[#FF4A00] transition-colors flex items-center gap-2 group">
+                        Explore Feature
+                        <div className="w-8 h-[1px] bg-white/30 group-hover:w-12 group-hover:bg-[#FF4A00] transition-all" />
+                    </button>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
