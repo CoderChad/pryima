@@ -8,9 +8,11 @@ import { pagesConfig } from './pages.config'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
+import { CartProvider } from '@/lib/CartContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import CheckoutSuccess from '@/pages/CheckoutSuccess';
 import CheckoutCanceled from '@/pages/CheckoutCanceled';
+import Cart from '@/pages/Cart';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -49,6 +51,11 @@ const AuthenticatedApp = () => {
       {/* Checkout routes */}
       <Route path="/checkout/success" element={<CheckoutSuccess />} />
       <Route path="/checkout/canceled" element={<CheckoutCanceled />} />
+      <Route path="/cart" element={
+        <LayoutWrapper currentPageName="Cart">
+          <Cart />
+        </LayoutWrapper>
+      } />
 
       {/* Main app pages */}
       <Route path="/" element={
@@ -77,14 +84,16 @@ function App() {
 
   return (
     <AuthProvider>
-      <QueryClientProvider client={queryClientInstance}>
-        <Router>
-          <NavigationTracker />
-          <AuthenticatedApp />
-        </Router>
-        <Toaster />
-        <VisualEditAgent />
-      </QueryClientProvider>
+      <CartProvider>
+        <QueryClientProvider client={queryClientInstance}>
+          <Router>
+            <NavigationTracker />
+            <AuthenticatedApp />
+          </Router>
+          <Toaster />
+          <VisualEditAgent />
+        </QueryClientProvider>
+      </CartProvider>
     </AuthProvider>
   )
 }

@@ -16,7 +16,7 @@ if (!stripeKey) {
   else throw new Error(msg)
 }
 
-const stripe = new Stripe(stripeKey, { apiVersion: '2022-11-15' })
+const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' })
 
 // ============================================
 // STRIPE ATLAS ENDPOINT (existing)
@@ -215,6 +215,16 @@ app.post('/api/checkout_sessions', async (req, res) => {
         tier,
         tierName: config.tierName,
         displayName: config.displayName
+      },
+      // Session expires in 30 minutes
+      expires_at: Math.floor(Date.now() / 1000) + (30 * 60),
+      // Allow promotion codes
+      allow_promotion_codes: true,
+      // Collect billing address for tax calculation
+      billing_address_collection: 'auto',
+      // Automatic tax calculation (if enabled in Stripe)
+      automatic_tax: {
+        enabled: false
       }
     })
 
@@ -225,6 +235,120 @@ app.post('/api/checkout_sessions', async (req, res) => {
     return res.json({ url: session.url })
   } catch (err) {
     console.error('❌ Error creating checkout session:', err.message || err)
+    const message = isDev ? err.message : 'Failed to create checkout session. Please try again.'
+    return res.status(500).json(errorResponse(message))
+  }
+})
+
+/**
+ * POST /api/checkout_sessions/cart
+ * Create a Stripe Checkout Session from cart items
+ *
+ * Request: { items: [{ tierKey: string, quantity: number }], customerEmail?: string }
+ * Response: { url: string } - Redirect user to this URL
+ */
+app.post('/api/checkout_sessions/cart', async (req, res) => {
+  try {
+    const { items, customerEmail } = req.body || {}
+
+    // Validate items array
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json(errorResponse('items array is required and must not be empty'))
+    }
+
+    // Validate email format if provided
+    if (customerEmail && !isValidEmail(customerEmail)) {
+      return res.status(400).json(errorResponse('Invalid email format'))
+    }
+
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:5173'
+    const lineItems = []
+    const metadataItems = []
+
+    if (isDev) {
+      console.log(`\n🛒 Creating Cart Checkout Session`)
+      console.log(`   Items: ${items.length}`)
+      if (customerEmail) console.log(`   Email: ${customerEmail}`)
+    }
+
+    // Build line items from cart
+    for (const item of items) {
+      const { tierKey, quantity } = item
+
+      // Validate tier
+      if (!tierKey || !isValidTier(tierKey)) {
+        return res.status(400).json(
+          errorResponse(`Invalid tier: '${tierKey}'. Must be one of: ${getValidTiers().join(', ')}`)
+        )
+      }
+
+      // Validate quantity
+      if (!quantity || quantity < 1 || !Number.isInteger(quantity)) {
+        return res.status(400).json(errorResponse(`Invalid quantity for tier ${tierKey}: must be a positive integer`))
+      }
+
+      const config = PRODUCTS[tierKey]
+      
+      lineItems.push({
+        price_data: {
+          currency: 'usd',
+          product: config.product,
+          unit_amount: config.unit_amount
+        },
+        quantity: quantity
+      })
+
+      metadataItems.push(`${tierKey}:${quantity}`)
+
+      if (isDev) {
+        console.log(`   - ${config.displayName} × ${quantity}: $${((config.unit_amount * quantity) / 100).toFixed(2)}`)
+      }
+    }
+
+    // Calculate total for logging
+    const total = lineItems.reduce((sum, item) => {
+      return sum + (item.price_data.unit_amount * item.quantity)
+    }, 0)
+
+    if (isDev) {
+      console.log(`   Total: $${(total / 100).toFixed(2)}`)
+    }
+
+    // Create Stripe Checkout Session with multiple line items
+    const session = await stripe.checkout.sessions.create({
+      mode: 'payment',
+      payment_method_types: ['card'],
+      line_items: lineItems,
+      // Redirect URLs after checkout
+      success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/checkout/canceled`,
+      // Pre-fill customer email
+      customer_email: customerEmail || undefined,
+      // Store metadata for webhook processing
+      // Format: "TIER1:2,TIER2:1" for multiple items
+      metadata: {
+        items: metadataItems.join(','),
+        itemCount: items.length.toString()
+      },
+      // Session expires in 30 minutes
+      expires_at: Math.floor(Date.now() / 1000) + (30 * 60),
+      // Allow promotion codes
+      allow_promotion_codes: true,
+      // Collect billing address for tax calculation
+      billing_address_collection: 'auto',
+      // Automatic tax calculation (if enabled in Stripe)
+      automatic_tax: {
+        enabled: false
+      }
+    })
+
+    if (isDev) {
+      console.log(`✅ Cart session created: ${session.id}\n`)
+    }
+
+    return res.json({ url: session.url })
+  } catch (err) {
+    console.error('❌ Error creating cart checkout session:', err.message || err)
     const message = isDev ? err.message : 'Failed to create checkout session. Please try again.'
     return res.status(500).json(errorResponse(message))
   }
@@ -243,9 +367,9 @@ app.get('/api/checkout/session-details', async (req, res) => {
       return res.status(400).json(errorResponse('session_id query parameter is required'))
     }
 
-    // Retrieve session from Stripe
+    // Retrieve session from Stripe with expanded data
     const session = await stripe.checkout.sessions.retrieve(session_id, {
-      expand: ['line_items']
+      expand: ['line_items', 'customer']
     })
 
     if (!session) {
@@ -255,7 +379,7 @@ app.get('/api/checkout/session-details', async (req, res) => {
     // Extract relevant details
     const details = {
       sessionId: session.id,
-      customerEmail: session.customer_email,
+      customerEmail: session.customer_email || session.customer?.email,
       tier: session.metadata?.tier,
       tierName: session.metadata?.tierName,
       displayName: session.metadata?.displayName,
@@ -264,7 +388,9 @@ app.get('/api/checkout/session-details', async (req, res) => {
       currency: session.currency,
       status: session.payment_status,
       createdAt: new Date(session.created * 1000).toISOString(),
-      completedAt: session.payment_status === 'paid' ? new Date().toISOString() : null
+      completedAt: session.payment_status === 'paid' 
+        ? new Date(session.created * 1000).toISOString()
+        : null
     }
 
     if (isDev) {
@@ -327,41 +453,111 @@ app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), async
   // Process checkout.session.completed event
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object
+    
+    // Only process if payment was successful
+    if (session.payment_status !== 'paid') {
+      if (isDev) {
+        console.log(`⚠️  Session ${session.id} completed but payment_status is: ${session.payment_status}`)
+      }
+      return res.json({ received: true })
+    }
+
     try {
       // Retrieve full session details including line items
       const sessionDetails = await stripe.checkout.sessions.retrieve(session.id, {
-        expand: ['line_items']
+        expand: ['line_items', 'customer']
       })
 
       // Extract purchase information from metadata and session
-      const tier = sessionDetails.metadata?.tier || 'unknown'
-      const tierName = sessionDetails.metadata?.tierName || 'unknown'
-      const customerEmail = sessionDetails.customer_email
+      const customerEmail = sessionDetails.customer_email || sessionDetails.customer?.email
       const sessionId = sessionDetails.id
       const amount = sessionDetails.amount_total || 0
 
-      if (isDev) {
-        console.log('✅ Payment completed:', {
+      if (!customerEmail) {
+        console.error('❌ No customer email found in session:', sessionId)
+        // Still return 200 to prevent retries, but log the issue
+        return res.json({ received: true, warning: 'No customer email' })
+      }
+
+      // Check if this is a cart checkout (multiple items) or single item checkout
+      const itemsMetadata = sessionDetails.metadata?.items
+      
+      if (itemsMetadata) {
+        // Cart checkout - process multiple items
+        const itemPairs = itemsMetadata.split(',')
+        const items = itemPairs.map(pair => {
+          const [tierKey, quantity] = pair.split(':')
+          const config = PRODUCTS[tierKey]
+          return {
+            tier: tierKey,
+            tierName: config?.tierName || tierKey,
+            displayName: config?.displayName || tierKey,
+            quantity: parseInt(quantity, 10) || 1
+          }
+        })
+
+        if (isDev) {
+          console.log('✅ Cart payment completed:', {
+            items: items.map(i => `${i.displayName} × ${i.quantity}`).join(', '),
+            customerEmail,
+            amount: `$${(amount / 100).toFixed(2)}`,
+            sessionId
+          })
+        }
+
+        // Process each item in the cart
+        for (const item of items) {
+          await handleSuccessfulPurchase({
+            tier: item.tier,
+            tierName: item.tierName,
+            customerEmail,
+            sessionId,
+            amount: (PRODUCTS[item.tier]?.unit_amount || 0) * item.quantity
+          })
+        }
+      } else {
+        // Single item checkout (backward compatible)
+        const tier = sessionDetails.metadata?.tier || 'unknown'
+        const tierName = sessionDetails.metadata?.tierName || 'unknown'
+
+        if (isDev) {
+          console.log('✅ Payment completed:', {
+            tier,
+            tierName,
+            customerEmail,
+            amount: `$${(amount / 100).toFixed(2)}`,
+            sessionId
+          })
+        }
+
+        // Call purchase fulfillment handler
+        await handleSuccessfulPurchase({
           tier,
           tierName,
           customerEmail,
-          amount: `$${(amount / 100).toFixed(2)}`,
-          sessionId
+          sessionId,
+          amount
         })
       }
 
-      // Call purchase fulfillment handler
-      await handleSuccessfulPurchase({
-        tier,
-        tierName,
-        customerEmail,
-        sessionId,
-        amount
-      })
-
     } catch (err) {
       console.error('❌ Error processing purchase:', err.message || err)
+      // Log full error in dev mode
+      if (isDev && err.stack) {
+        console.error('Stack trace:', err.stack)
+      }
       // Continue and return 200 to prevent Stripe retries
+      // In production, you might want to log to an error tracking service
+    }
+  } else if (event.type === 'payment_intent.succeeded') {
+    // Handle payment_intent.succeeded as a backup (though checkout.session.completed is preferred)
+    if (isDev) {
+      console.log('📨 Payment intent succeeded event received (backup handler)')
+    }
+  } else {
+    // Log other event types for monitoring
+    if (isDev) {
+      console.log(`ℹ️  Unhandled event type: ${event.type}`)
     }
   }
 

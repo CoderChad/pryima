@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { base44 } from "@/api/base44Client";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/lib/CartContext";
 
 export default function Layout({ children, currentPageName }) {
   const location = useLocation();
+  const { getCartItemCount } = useCart();
   const [user, setUser] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const cartItemCount = getCartItemCount();
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -86,6 +89,17 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Auth & Dashboard Links */}
             <div className="hidden lg:flex items-center gap-4">
+              {/* Cart Icon */}
+              <Link to="/cart" className="relative">
+                <button className="p-2 hover:bg-[#FF4A00]/10 rounded-lg transition-colors relative">
+                  <ShoppingCart className="w-5 h-5 text-gray-300 hover:text-[#FF4A00]" />
+                  {cartItemCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-[#FF4A00] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                      {cartItemCount > 9 ? '9+' : cartItemCount}
+                    </span>
+                  )}
+                </button>
+              </Link>
               {user ? (
                 <>
                   <Link to="/app">
@@ -147,6 +161,20 @@ export default function Layout({ children, currentPageName }) {
                   {link.name}
                 </Link>
               ))}
+              {/* Cart Link for Mobile */}
+              <Link
+                to="/cart"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 py-2 text-sm font-medium text-gray-300 hover:text-[#FF4A00] transition-colors"
+              >
+                <ShoppingCart className="w-5 h-5" />
+                <span>Cart</span>
+                {cartItemCount > 0 && (
+                  <span className="bg-[#FF4A00] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {cartItemCount > 9 ? '9+' : cartItemCount}
+                  </span>
+                )}
+              </Link>
               <div className="pt-3 border-t border-[#FF4A00]/10 space-y-2">
                 {user ? (
                   <>

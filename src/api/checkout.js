@@ -57,4 +57,52 @@ export async function createCheckoutSession(tier, customerEmail) {
   }
 }
 
-export default { createCheckoutSession, VALID_TIERS }
+/**
+ * Create a Stripe Checkout Session from cart items
+ * @param {Array} cartItems - Array of cart items with tierKey, quantity, price, productId
+ * @param {string} customerEmail - Customer email
+ * @returns {Promise<{url: string}>} - Object with Stripe Checkout URL
+ * @throws {Error} - If request fails
+ */
+export async function createCheckoutSessionFromCart(cartItems, customerEmail) {
+  if (!cartItems || cartItems.length === 0) {
+    throw new Error('Cart is empty')
+  }
+
+  try {
+    const res = await fetch(`${SERVER}/api/checkout_sessions/cart`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        items: cartItems.map(item => ({
+          tierKey: item.tierKey,
+          quantity: item.quantity
+        })),
+        customerEmail: customerEmail || null 
+      })
+    })
+
+    if (!res.ok) {
+      let errorMsg = `Request failed with status ${res.status}`
+      try {
+        const errorData = await res.json()
+        errorMsg = errorData?.error || errorMsg
+      } catch {
+        // Fallback if response is not JSON
+      }
+      throw new Error(errorMsg)
+    }
+
+    const data = await res.json()
+    if (!data.url) {
+      throw new Error('No checkout URL returned from server')
+    }
+
+    return data
+  } catch (err) {
+    console.error('Cart checkout error:', err.message)
+    throw err
+  }
+}
+
+export default { createCheckoutSession, createCheckoutSessionFromCart, VALID_TIERS }

@@ -5,6 +5,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Technology from './pages/Technology';
 import FAQ from './pages/FAQ';
+import Cart from './pages/Cart';
 import __Layout from './Layout.jsx';
 
 
@@ -16,6 +17,7 @@ export const PAGES = {
     "Contact": Contact,
     "Technology": Technology,
     "FAQ": FAQ,
+    "Cart": Cart,
 }
 
 export const pagesConfig = {

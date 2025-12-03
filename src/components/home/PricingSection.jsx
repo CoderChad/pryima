@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Check, AlertCircle } from "lucide-react";
-import { createCheckoutSession } from "@/api/checkout";
+import { Check, AlertCircle, ShoppingCart } from "lucide-react";
+import { useCart } from "@/lib/CartContext";
+import { toast } from "sonner";
 
 export default function PricingSection() {
+  const navigate = useNavigate()
+  const { addToCart, getCartItemCount } = useCart()
   const [loadingIndex, setLoadingIndex] = useState(null)
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState('')
@@ -223,45 +227,45 @@ export default function PricingSection() {
 
                 {/* CTA Button */}
                 <Button
-                  onClick={async () => {
-                    // Validate email first
-                    if (!validateEmail(email)) {
-                      return
-                    }
-
+                  onClick={() => {
                     if (!tier.tier) {
                       console.error('Missing tier configuration')
-                      alert('Package configuration error. Please refresh and try again.')
+                      toast.error('Package configuration error. Please refresh and try again.')
                       return
                     }
 
                     try {
                       setLoadingIndex(index)
-                      
-                      // Create checkout session with captured email and redirect to Stripe
-                      const res = await createCheckoutSession(tier.tier, email)
-                      if (res?.url) {
-                        // Redirect to Stripe Checkout
-                        window.location.href = res.url
+                      const success = addToCart(tier.tier)
+                      if (success) {
+                        toast.success(`${tier.name} added to cart!`)
+                        // Optional: Navigate to cart after adding
+                        // navigate('/cart')
                       } else {
-                        throw new Error('No checkout URL returned from server')
+                        toast.error('Failed to add item to cart')
                       }
                     } catch (err) {
-                      console.error('Checkout error:', err.message)
-                      const errorMsg = err.message || 'Failed to start checkout'
-                      alert(`Unable to start checkout: ${errorMsg}\n\nPlease try again or contact support.`)
+                      console.error('Add to cart error:', err.message)
+                      toast.error('Unable to add item to cart. Please try again.')
                     } finally {
                       setLoadingIndex(null)
                     }
                   }}
-                  disabled={loadingIndex !== null || !email || emailError !== ''}
-                  className={`w-full py-6 text-lg font-semibold transition-all duration-300 ${
+                  disabled={loadingIndex !== null}
+                  className={`w-full py-6 text-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 ${
                     tier.highlight
                       ? "bg-gradient-to-r from-[#FF4A00] to-[#FF6B00] text-white shadow-lg shadow-[#FF4A00]/50 hover:shadow-[#FF4A00]/70 disabled:opacity-50"
                       : "bg-transparent border-2 border-[#FF4A00] text-[#FF4A00] hover:bg-[#FF4A00] hover:text-white disabled:opacity-50"
                   }`}
                 >
-                  {loadingIndex === index ? '🔄 Redirecting to Checkout…' : tier.cta}
+                  {loadingIndex === index ? (
+                    '🔄 Adding...'
+                  ) : (
+                    <>
+                      <ShoppingCart className="w-5 h-5" />
+                      {tier.cta}
+                    </>
+                  )}
                 </Button>
               </div>
             </div>
