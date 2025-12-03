@@ -9,41 +9,8 @@ export default function Step2RealTimeData() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Image Content - Left */}
-          <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black shadow-2xl group">
-              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-transparent opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
-              <img 
-                src="https://images.unsplash.com/photo-1510017803434-a899398421b3?q=80&w=2070&auto=format&fit=crop" 
-                alt="Wearable Data Stream" 
-                className="w-full h-auto object-cover opacity-80"
-              />
-              
-              {/* Data Stream Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 space-y-3 bg-gradient-to-t from-black to-transparent pt-20">
-                {[
-                  { icon: Watch, label: "Sleep Quality", val: "84%", color: "text-cyan-400" },
-                  { icon: Activity, label: "HRV", val: "52ms", color: "text-[#FF4A00]" },
-                  { icon: Smartphone, label: "Steps", val: "8,432", color: "text-green-400" },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10 backdrop-blur-md transform translate-y-0 hover:-translate-y-1 transition-transform duration-300">
-                    <div className="flex items-center gap-3 text-gray-300">
-                      <item.icon size={16} />
-                      <span className="text-sm">{item.label}</span>
-                    </div>
-                    <div className={`font-mono font-bold ${item.color}`}>{item.val}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Decorative Data Lines */}
-            <div className="absolute -right-4 top-1/4 w-20 h-[1px] bg-gradient-to-r from-cyan-500 to-transparent hidden lg:block" />
-            <div className="absolute -right-4 top-2/4 w-12 h-[1px] bg-gradient-to-r from-[#FF4A00] to-transparent hidden lg:block" />
-          </div>
-
-          {/* Text Content - Right */}
-          <div>
+          {/* Text Content - First on Mobile, Right on Desktop */}
+          <div className="lg:order-2">
             <div className="inline-block px-3 py-1 mb-4 rounded bg-white/5 border border-white/10 text-cyan-400 text-xs font-mono uppercase tracking-wider">
               Step 2 · Real-Time Life Data
             </div>
@@ -82,6 +49,39 @@ export default function Step2RealTimeData() {
                 Now, Pryima can start connecting the dots between what you do and how your body responds.
               </p>
             </div>
+          </div>
+
+          {/* Image Content - Second on Mobile, Left on Desktop */}
+          <div className="relative lg:order-1">
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black shadow-2xl group">
+              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-transparent opacity-50 group-hover:opacity-70 transition-opacity duration-500" />
+              <img 
+                src="https://images.unsplash.com/photo-1510017803434-a899398421b3?q=80&w=2070&auto=format&fit=crop" 
+                alt="Wearable Data Stream" 
+                className="w-full h-auto object-cover opacity-80"
+              />
+              
+              {/* Data Stream Overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-8 space-y-3 bg-gradient-to-t from-black to-transparent pt-20">
+                {[
+                  { icon: Watch, label: "Sleep Quality", val: "84%", color: "text-cyan-400" },
+                  { icon: Activity, label: "HRV", val: "52ms", color: "text-[#FF4A00]" },
+                  { icon: Smartphone, label: "Steps", val: "8,432", color: "text-green-400" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-white/5 border border-white/10 backdrop-blur-md transform translate-y-0 hover:-translate-y-1 transition-transform duration-300">
+                    <div className="flex items-center gap-3 text-gray-300">
+                      <item.icon size={16} />
+                      <span className="text-sm">{item.label}</span>
+                    </div>
+                    <div className={`font-mono font-bold ${item.color}`}>{item.val}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Decorative Data Lines */}
+            <div className="absolute -right-4 top-1/4 w-20 h-[1px] bg-gradient-to-r from-cyan-500 to-transparent hidden lg:block" />
+            <div className="absolute -right-4 top-2/4 w-12 h-[1px] bg-gradient-to-r from-[#FF4A00] to-transparent hidden lg:block" />
           </div>
         </div>
       </div>

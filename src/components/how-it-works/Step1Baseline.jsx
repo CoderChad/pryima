@@ -7,8 +7,8 @@ export default function Step1Baseline() {
     <section className="py-24 bg-[#02040A] border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Text Content - Left */}
-          <div className="order-2 lg:order-1">
+          {/* Text Content - First on Mobile, Left on Desktop */}
+          <div>
             <div className="inline-block px-3 py-1 mb-4 rounded bg-white/5 border border-white/10 text-cyan-400 text-xs font-mono uppercase tracking-wider">
               Step 1 · Your Biological Baseline
             </div>
@@ -51,8 +51,8 @@ export default function Step1Baseline() {
             </div>
           </div>
 
-          {/* Image Content - Right */}
-          <div className="order-1 lg:order-2 relative">
+          {/* Image Content - Second on Mobile, Right on Desktop */}
+          <div className="relative">
             <div className="relative rounded-2xl bg-white/5 border border-white/10 p-8 aspect-square flex items-center justify-center overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               

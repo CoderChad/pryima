@@ -6,8 +6,8 @@ export default function Step3PatternRecognition() {
     <section className="py-24 bg-[#02040A] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Text Content - Left */}
-          <div className="order-2 lg:order-1">
+          {/* Text Content - First on Mobile, Left on Desktop */}
+          <div>
             <div className="inline-block px-3 py-1 mb-4 rounded bg-white/5 border border-white/10 text-cyan-400 text-xs font-mono uppercase tracking-wider">
               Step 3 · Pattern Recognition
             </div>
@@ -45,8 +45,8 @@ export default function Step3PatternRecognition() {
             </div>
           </div>
 
-          {/* Image Content - Right */}
-          <div className="order-1 lg:order-2">
+          {/* Image Content - Second on Mobile, Right on Desktop */}
+          <div>
             <div className="bg-[#0A0F1E] rounded-2xl border border-white/10 p-8 shadow-2xl relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF4A00]/10 rounded-full blur-3xl pointer-events-none" />
               
