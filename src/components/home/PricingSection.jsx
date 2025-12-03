@@ -1,16 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Check, AlertCircle } from "lucide-react";
+import { createCheckoutSession } from "@/api/checkout";
 
 export default function PricingSection() {
+  const [loadingIndex, setLoadingIndex] = useState(null)
+  const [email, setEmail] = useState('')
+  const [emailError, setEmailError] = useState('')
+
+  // Validate email format
+  const validateEmail = (value) => {
+    if (!value) {
+      setEmailError('Email is required')
+      return false
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(value)) {
+      setEmailError('Please enter a valid email address')
+      return false
+    }
+    setEmailError('')
+    return true
+  }
+
+  // Map tier names to server tier keys
+  const TIER_KEYS = {
+    GENETICS_ONLY: 'GENETICS_ONLY',
+    TIER1: 'TIER1',
+    TIER2: 'TIER2',
+    TIER3: 'TIER3'
+  }
+
   const tiers = [
     {
+      // Package 1 — SelfDecode-only Genetics Tier (New)
       badge: "Entry",
-      name: "Genetics Only",
+      name: "SelfDecode-only Genetics",
       price: "$249",
       subtitle: "one-time",
-      description: "Just the SelfDecode genetic test kit. Perfect for getting started with your raw DNA data.",
+      description: "Just the 1200-point SelfDecode genetic report + Pryima AI interpretation.",
       features: [
         "SelfDecode Genetic Test Kit",
         "Raw Data Access",
@@ -20,13 +48,14 @@ export default function PricingSection() {
       value: "Entry Level Pricing: $249",
       cta: "Buy Genetics Kit",
       highlight: false,
+      tier: TIER_KEYS.GENETICS_ONLY
     },
     {
       badge: "Starter",
-      name: "Core Genome",
+      name: "Founding Tier 1",
       price: "$500",
       subtitle: "+ $9.99 / month",
-      description: "Start with your DNA and the Pryima Health OS — your personal health operating system.",
+      description: "Pryima Health OS + SelfDecode genetics.",
       features: [
         "Pryima Health OS access",
         "SelfDecode genetics test + Pryima interpretation",
@@ -34,15 +63,16 @@ export default function PricingSection() {
         "Personalized dashboard with ongoing recommendations",
       ],
       value: "Founding Member Pricing: $500 (MSRP $899+)",
-      cta: "Reserve Core Genome Spot",
+      cta: "Join Tier 1",
       highlight: false,
+      tier: TIER_KEYS.TIER1
     },
     {
       badge: "Most Popular",
-      name: "Systems Deep Dive",
+      name: "Founding Tier 2",
       price: "$1,499",
       subtitle: "one-time presale",
-      description: "Deep-dive into hormones, stress, and food — mapped into your Health OS.",
+      description: "Adds hormone testing, food sensitivity, cortisol/adrenal panel, etc.",
       features: [
         "Everything in Core Genome",
         "Comprehensive hormone panel (sex hormones + thyroid and related markers)",
@@ -54,15 +84,16 @@ export default function PricingSection() {
       ],
       value: "Founding Member Pricing: $1,499 (labs + coaching MSRP $2,400+)",
       target: "For people serious about optimizing hormones, stress, and how food affects their biology.",
-      cta: "Join Systems Deep Dive",
+      cta: "Join Tier 2",
       highlight: true,
+      tier: TIER_KEYS.TIER2
     },
     {
       badge: "Lifetime Access",
-      name: "Full Omics Lifetime",
+      name: "Founding Tier 3",
       price: "$3,499",
       subtitle: "one-time presale",
-      description: "The full multi-omics stack — plus lifetime access to Pryima Health OS.",
+      description: "Adds gut microbiome, facial microbiome, continuous glucose, lifetime AI coach, etc.",
       features: [
         "Everything in Core Genome",
         "Everything in Systems Deep Dive",
@@ -75,8 +106,9 @@ export default function PricingSection() {
       ],
       value: "Founding Member Pricing: $3,499 (full stack MSRP $5,000+ over time)",
       target: "For all-in biohackers, founders, and high performers who want the full build-out and never pay a subscription again.",
-      cta: "Secure Full Omics Lifetime",
+      cta: "Join Tier 3",
       highlight: false,
+      tier: TIER_KEYS.TIER3
     },
   ];
 
@@ -101,6 +133,41 @@ export default function PricingSection() {
               Limited Founding Cohort: spots are capped for each tier to ensure white-glove onboarding.
             </p>
           </div>
+        </div>
+
+        {/* Email Capture */}
+        <div className="max-w-2xl mx-auto mb-12 p-6 rounded-2xl bg-[#FF4A00]/10 border border-[#FF4A00]/30">
+          <label className="block text-white font-semibold mb-3">
+            Enter your email to get started
+          </label>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                setEmailError('')
+              }}
+              onBlur={() => email && validateEmail(email)}
+              className="flex-1 px-4 py-3 rounded-lg bg-black/50 border border-[#FF4A00]/30 text-white placeholder-gray-500 focus:outline-none focus:border-[#FF4A00]"
+            />
+            <button
+              onClick={() => validateEmail(email)}
+              className="px-6 py-3 rounded-lg bg-[#FF4A00] text-white font-semibold hover:bg-[#FF6B00] transition-all duration-300 whitespace-nowrap"
+            >
+              Verify Email
+            </button>
+          </div>
+          {emailError && (
+            <div className="flex items-center gap-2 mt-3 text-red-400 text-sm">
+              <AlertCircle className="w-4 h-4" />
+              {emailError}
+            </div>
+          )}
+          {email && !emailError && (
+            <p className="text-[#FF4A00] text-sm mt-3">✓ Email ready for checkout</p>
+          )}
         </div>
 
         {/* Pricing Cards */}
@@ -154,18 +221,48 @@ export default function PricingSection() {
                   <p className="text-gray-400 text-xs mb-6 italic">{tier.target}</p>
                 )}
 
-                {/* CTA */}
-                <Link to="/signup">
-                  <Button
-                    className={`w-full py-6 text-lg font-semibold transition-all duration-300 ${
-                      tier.highlight
-                        ? "bg-gradient-to-r from-[#FF4A00] to-[#FF6B00] text-white shadow-lg shadow-[#FF4A00]/50 hover:shadow-[#FF4A00]/70"
-                        : "bg-transparent border-2 border-[#FF4A00] text-[#FF4A00] hover:bg-[#FF4A00] hover:text-white"
-                    }`}
-                  >
-                    {tier.cta}
-                  </Button>
-                </Link>
+                {/* CTA Button */}
+                <Button
+                  onClick={async () => {
+                    // Validate email first
+                    if (!validateEmail(email)) {
+                      return
+                    }
+
+                    if (!tier.tier) {
+                      console.error('Missing tier configuration')
+                      alert('Package configuration error. Please refresh and try again.')
+                      return
+                    }
+
+                    try {
+                      setLoadingIndex(index)
+                      
+                      // Create checkout session with captured email and redirect to Stripe
+                      const res = await createCheckoutSession(tier.tier, email)
+                      if (res?.url) {
+                        // Redirect to Stripe Checkout
+                        window.location.href = res.url
+                      } else {
+                        throw new Error('No checkout URL returned from server')
+                      }
+                    } catch (err) {
+                      console.error('Checkout error:', err.message)
+                      const errorMsg = err.message || 'Failed to start checkout'
+                      alert(`Unable to start checkout: ${errorMsg}\n\nPlease try again or contact support.`)
+                    } finally {
+                      setLoadingIndex(null)
+                    }
+                  }}
+                  disabled={loadingIndex !== null || !email || emailError !== ''}
+                  className={`w-full py-6 text-lg font-semibold transition-all duration-300 ${
+                    tier.highlight
+                      ? "bg-gradient-to-r from-[#FF4A00] to-[#FF6B00] text-white shadow-lg shadow-[#FF4A00]/50 hover:shadow-[#FF4A00]/70 disabled:opacity-50"
+                      : "bg-transparent border-2 border-[#FF4A00] text-[#FF4A00] hover:bg-[#FF4A00] hover:text-white disabled:opacity-50"
+                  }`}
+                >
+                  {loadingIndex === index ? '🔄 Redirecting to Checkout…' : tier.cta}
+                </Button>
               </div>
             </div>
           ))}
