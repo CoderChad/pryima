@@ -38,11 +38,11 @@ export default function FeatureShowcase() {
     <section className="py-24 bg-[#02040A] relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[#02040A]/80 z-10" />
+        <div className="absolute inset-0 bg-[#02040A]/40 z-10" />
         <img 
           src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/dbcc3b549_IMG_0162.jpg"
           alt="Background" 
-          className="w-full h-full object-cover opacity-50"
+          className="w-full h-full object-cover opacity-80"
         />
       </div>
       <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none z-10"></div>
