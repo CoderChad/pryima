@@ -188,8 +188,8 @@ export default function DNASection() {
                 <img 
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/0b8efea0d_20250914_2023_BlackBackgroundLogo_remix_01k55fe37weqq81p9zc23pxbc61.png" 
                     alt="Pryima Logo" 
-                    className="w-64 h-64 object-contain animate-pulse-slow"
-                />
+                    className="w-[600px] h-[600px] object-contain animate-pulse-slow"
+                    />
             </div>
           </div>
 
