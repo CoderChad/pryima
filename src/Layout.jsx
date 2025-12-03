@@ -34,6 +34,7 @@ export default function Layout({ children, currentPageName }) {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Marketplace", path: "/marketplace" },
+    { name: "How It Works", path: "/how-it-works" },
     { name: "Technology", path: "/technology" },
     { name: "Pricing", path: "/pricing" },
     { name: "About", path: "/about" },
@@ -218,6 +219,7 @@ export default function Layout({ children, currentPageName }) {
             <div>
               <h4 className="font-semibold mb-4 text-[#FF4A00]">Quick Links</h4>
               <ul className="space-y-2 text-sm">
+                <li><Link to="/how-it-works" className="text-gray-400 hover:text-[#FF4A00] transition-colors">How It Works</Link></li>
                 <li><Link to="/pricing" className="text-gray-400 hover:text-[#FF4A00] transition-colors">Pricing</Link></li>
                 <li><Link to="/about" className="text-gray-400 hover:text-[#FF4A00] transition-colors">About</Link></li>
                 <li><Link to="/contact" className="text-gray-400 hover:text-[#FF4A00] transition-colors">Contact</Link></li>
