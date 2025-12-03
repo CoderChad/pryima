@@ -16,7 +16,7 @@ export default function Contact() {
 
     try {
       await base44.integrations.Core.SendEmail({
-        to: "hello@pryima.com",
+        to: "chad@pryima.com",
         subject: `Contact Form: ${formData.name}`,
         body: `From: ${formData.name} (${formData.email})\n\n${formData.message}`,
         from_name: "Pryima Contact Form",
@@ -51,8 +51,8 @@ export default function Contact() {
             <Mail className="w-8 h-8 text-[#FF4A00] mb-4" />
             <h3 className="text-xl font-bold text-white mb-2">Email Us</h3>
             <p className="text-gray-400 mb-4">For general inquiries and support</p>
-            <a href="mailto:hello@pryima.com" className="text-[#FF4A00] hover:underline">
-              hello@pryima.com
+            <a href="mailto:chad@pryima.com" className="text-[#FF4A00] hover:underline">
+              chad@pryima.com
             </a>
           </div>
 
