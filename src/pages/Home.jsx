@@ -1,7 +1,7 @@
 import React from "react";
 import AnimatedHero from "../components/home/AnimatedHero";
 import CityVisual from "../components/home/CityVisual";
-import DNASection from "../components/home/DNASection";
+
 import FeatureShowcase from "../components/home/FeatureShowcase";
 import PersonasSection from "../components/home/PersonasSection";
 import WhyPryima from "../components/home/WhyPryima";
@@ -16,7 +16,6 @@ export default function Home() {
       <AnimatedHero />
       <CityVisual />
       <FeatureShowcase />
-      <DNASection />
       <PersonasSection />
       <WhyPryima />
       <DataStackSection />
