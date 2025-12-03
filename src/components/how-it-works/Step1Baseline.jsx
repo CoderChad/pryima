@@ -1,83 +1,76 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { Dna, FlaskConical, Activity, Fingerprint } from "lucide-react";
+import { Dna, Activity, Microscope, FlaskConical } from "lucide-react";
 
 export default function Step1Baseline() {
   return (
-    <section className="py-24 bg-[#02040A] border-t border-white/5 relative">
+    <section className="py-24 bg-[#02040A] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Text Content - First on Mobile, Left on Desktop */}
-          <div>
-            <div className="inline-block px-3 py-1 mb-4 rounded bg-white/5 border border-white/10 text-cyan-400 text-xs font-mono uppercase tracking-wider">
+          
+          {/* Text Left */}
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400 text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-[#FF4A00]"></span>
               Step 1 · Your Biological Baseline
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              We start by understanding <br/>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-white">
+              We start by understanding <br />
               <span className="text-[#FF4A00]">your biology.</span>
             </h2>
             
-            <div className="prose prose-invert max-w-none mb-8 text-gray-400 text-lg leading-relaxed">
-              <p className="mb-4">
-                Before Pryima ever tells you what to do, it listens. Your journey begins with at-home testing that builds your core biological signature:
-              </p>
-              <ul className="space-y-3 list-none pl-0">
-                {[
-                  "1200-marker genetic blueprint (via SelfDecode)",
-                  "Gut microbiome insights (Biomes.world)",
-                  "Facial microbiome mapping (HelloBiome)",
-                  "Hormone, cortisol, and food sensitivity panels (myLAB Box)",
-                  "Optional continuous glucose monitor (Stelo) for real-time metabolic patterns"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#FF4A00] flex-shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4">
-                This foundation gives Pryima a deep, long-term view of your DNA, gut, skin, hormones, and metabolism. It’s like handing your AI its first map of how your body is wired.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-xl bg-gradient-to-r from-cyan-500/10 to-transparent border-l-4 border-cyan-500">
-              <div className="flex items-center gap-2 mb-2 text-cyan-400">
-                <Fingerprint size={20} />
-                <span className="font-bold text-sm uppercase tracking-wider">Health Fingerprint</span>
-              </div>
-              <p className="text-cyan-100 italic">
+            <p className="text-gray-400 text-lg leading-relaxed">
+              Before Pryima ever tells you what to do, it listens. Your journey begins with at-home testing that builds your core biological signature:
+            </p>
+            
+            <ul className="space-y-4">
+              {[
+                "1200-marker genetic blueprint (via SelfDecode)",
+                "Gut microbiome insights (Biomes.world)",
+                "Facial microbiome mapping (HelloBiome)",
+                "Hormone, cortisol, and food sensitivity panels (myLAB Box)",
+                "Optional continuous glucose monitor (Stelo) for real-time metabolic patterns"
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-300">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#FF4A00] mt-2.5 flex-shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            
+            <p className="text-gray-400 text-lg leading-relaxed">
+              This foundation gives Pryima a deep, long-term view of your DNA, gut, skin, hormones, and metabolism. It’s like handing your AI its first map of how your body is wired.
+            </p>
+            
+            <div className="p-6 rounded-xl bg-[#0A0F1E] border border-[#FF4A00]/20 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#FF4A00]" />
+              <p className="text-gray-300 italic relative z-10">
                 “Pryima uses this data to build your initial ‘health fingerprint’ — a unique profile that no generic app or one-size-fits-all program can match.”
               </p>
             </div>
           </div>
 
-          {/* Image Content - Second on Mobile, Right on Desktop */}
+          {/* Image Right */}
           <div className="relative">
-            <div className="relative rounded-2xl bg-white/5 border border-white/10 p-8 aspect-square flex items-center justify-center overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              {/* Test Kit Image */}
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white/[0.02]">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#FF4A00]/5 to-transparent z-0" />
               <img 
-                src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=2030&auto=format&fit=crop" 
-                alt="Pryima At-Home Test Kits" 
-                className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:scale-105 transition-transform duration-700"
+                src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?q=80&w=2669&auto=format&fit=crop"
+                alt="Pryima At-Home Testing Kit"
+                className="w-full h-auto object-cover relative z-10 opacity-90 hover:scale-105 transition-transform duration-500"
               />
               
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative bg-black/60 backdrop-blur-xl p-8 rounded-full border border-white/20 shadow-2xl border-cyan-500/30">
-                  <FlaskConical className="w-12 h-12 text-cyan-400" />
-                </div>
-              </div>
-
-              {/* Floating Badges */}
-              <div className="absolute top-12 right-12 bg-black/80 backdrop-blur px-3 py-1 rounded border border-[#FF4A00]/30 text-[#FF4A00] text-xs font-bold shadow-lg">
-                GENETICS
-              </div>
-              <div className="absolute bottom-12 left-12 bg-black/80 backdrop-blur px-3 py-1 rounded border border-cyan-500/30 text-cyan-400 text-xs font-bold shadow-lg">
-                MICROBIOME
+              {/* Overlay Icons */}
+              <div className="absolute top-6 right-6 flex flex-col gap-3 z-20">
+                {[Dna, Microscope, FlaskConical].map((Icon, i) => (
+                  <div key={i} className="w-10 h-10 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white shadow-lg">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </section>

@@ -1,79 +1,73 @@
 import React from "react";
-import { Brain, RefreshCw, Cpu } from "lucide-react";
+import { RotateCw, Brain, User } from "lucide-react";
 
 export default function Step4ContinuousRetraining() {
   return (
-    <section className="py-24 bg-[#050814] relative">
+    <section className="py-24 bg-[#050814] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Text Content - First on Mobile, Right on Desktop */}
-          <div className="lg:order-2">
-            <div className="inline-block px-3 py-1 mb-4 rounded bg-white/5 border border-white/10 text-cyan-400 text-xs font-mono uppercase tracking-wider">
+          
+          {/* Image Left (AI Brain Loop) */}
+          <div className="order-2 lg:order-1 relative flex justify-center">
+            <div className="relative w-[400px] h-[400px] flex items-center justify-center">
+               {/* Rotating Rings */}
+               <div className="absolute inset-0 rounded-full border border-cyan-500/20 animate-[spin_10s_linear_infinite]" />
+               <div className="absolute inset-10 rounded-full border border-dashed border-cyan-500/30 animate-[spin_15s_linear_infinite_reverse]" />
+               <div className="absolute inset-20 rounded-full border border-white/5 animate-pulse" />
+               
+               {/* Central Core */}
+               <div className="relative z-10 w-40 h-40 bg-gradient-to-br from-cyan-900/50 to-black rounded-full border border-cyan-500/50 backdrop-blur-md flex items-center justify-center shadow-[0_0_50px_rgba(6,182,212,0.2)]">
+                  <Brain className="w-16 h-16 text-cyan-400" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                     <User className="w-8 h-8 text-white" />
+                  </div>
+               </div>
+               
+               {/* Orbiting Data Points */}
+               <div className="absolute top-0 left-1/2 w-4 h-4 bg-[#FF4A00] rounded-full blur-sm animate-bounce" />
+               <div className="absolute bottom-10 right-10 w-2 h-2 bg-cyan-400 rounded-full blur-[1px]" />
+            </div>
+          </div>
+
+          {/* Text Right */}
+          <div className="order-1 lg:order-2 space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400 text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
               Step 4 · Continuous Retraining
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              The AI behind Pryima <br/>
-              <span className="text-[#FF4A00]">literally becomes more you.</span>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-white">
+              The AI behind Pryima literally <br />
+              <span className="text-cyan-400">becomes more you.</span>
             </h2>
             
-            <div className="prose prose-invert max-w-none mb-8 text-gray-400 text-lg leading-relaxed">
-              <p className="mb-4">
-                Each user gets their own evolving AI model. It isn’t a generic engine — it’s trained and retrained on your data only.
-              </p>
-              <ul className="space-y-3 list-none pl-0">
-                {[
-                  "Weekly updates as new data comes in",
-                  "Model weights subtly adjusted for better accuracy",
-                  "No two models are identical",
-                  "Your data is never used to train other users’ models (zero-knowledge style)"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <RefreshCw className="mt-1.5 w-4 h-4 text-cyan-400 flex-shrink-0 animate-spin-slow" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4">
-                Over time, this creates a living ‘digital twin’ of your health — an AI whose only job is to understand you better.
-              </p>
-            </div>
-
-            <div className="p-4 border-l-2 border-[#FF4A00] bg-[#FF4A00]/5">
-              <p className="text-white font-bold text-lg">
-                Most apps stay the same. Pryima upgrades itself around you.
-              </p>
+            <p className="text-gray-400 text-lg leading-relaxed">
+              Each user gets their own evolving AI model. It isn’t a generic engine — it’s trained and retrained on your data only.
+            </p>
+            
+            <ul className="space-y-4">
+              {[
+                "Weekly updates as new data comes in",
+                "Model weights subtly adjusted for better accuracy",
+                "No two models are identical",
+                "Your data is never used to train other users’ models (zero-knowledge style)"
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-300">
+                   <RotateCw className="w-5 h-5 text-cyan-400 mt-0.5" />
+                   <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            
+            <p className="text-gray-400 text-lg leading-relaxed">
+              Over time, this creates a living ‘digital twin’ of your health — an AI whose only job is to understand you better.
+            </p>
+            
+            <div className="text-xl font-light text-white border-l-2 border-cyan-400 pl-4 py-1">
+              Most apps stay the same. Pryima upgrades itself around you.
             </div>
           </div>
-
-          {/* Image Content - Second on Mobile, Left on Desktop */}
-          <div className="relative flex justify-center items-center min-h-[400px] lg:order-1">
-            <div className="relative w-full max-w-md aspect-square flex items-center justify-center">
-               {/* Animated Rings */}
-               <div className="absolute inset-0 border border-cyan-500/10 rounded-full animate-[spin_10s_linear_infinite]" />
-               <div className="absolute inset-8 border border-[#FF4A00]/10 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
-               <div className="absolute inset-16 border border-cyan-500/20 rounded-full animate-[spin_20s_linear_infinite]" />
-               
-               {/* Glowing Core */}
-               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-[#FF4A00]/5 rounded-full blur-3xl" />
-               
-               <div className="relative z-10 w-40 h-40 bg-black border border-white/10 rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(6,182,212,0.2)]">
-                 <div className="relative">
-                   <Brain className="w-16 h-16 text-white relative z-10" />
-                   <div className="absolute inset-0 bg-cyan-500/20 blur-md rounded-full" />
-                 </div>
-                 
-                 {/* User Silhouette Hint */}
-                 <div className="absolute bottom-2 right-2 w-8 h-8 bg-[#FF4A00] rounded-full flex items-center justify-center border-2 border-black">
-                    <span className="text-[10px] font-bold text-white">YOU</span>
-                 </div>
-               </div>
-
-               {/* Orbiting Data Points */}
-               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-3 py-1 bg-black/80 border border-cyan-500/50 rounded-full text-cyan-400 text-xs backdrop-blur-md shadow-lg animate-bounce">
-                 Weights Updating...
-               </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>

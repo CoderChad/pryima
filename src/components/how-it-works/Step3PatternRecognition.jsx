@@ -1,103 +1,102 @@
 import React from "react";
-import { GitGraph, Zap, TrendingUp } from "lucide-react";
+import { TrendingUp, Calendar, Battery, Moon } from "lucide-react";
 
 export default function Step3PatternRecognition() {
   return (
-    <section className="py-24 bg-[#02040A] border-t border-white/5">
+    <section className="py-24 bg-[#02040A] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Text Content - First on Mobile, Left on Desktop */}
-          <div>
-            <div className="inline-block px-3 py-1 mb-4 rounded bg-white/5 border border-white/10 text-cyan-400 text-xs font-mono uppercase tracking-wider">
+          
+          {/* Text Left */}
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400 text-sm font-medium">
+              <span className="w-2 h-2 rounded-full bg-[#FF4A00]"></span>
               Step 3 · Pattern Recognition
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Your AI begins to see <br/>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-white">
+              Your AI begins to see <br />
               <span className="text-[#FF4A00]">your unique patterns.</span>
             </h2>
             
-            <div className="prose prose-invert max-w-none mb-8 text-gray-400 text-lg leading-relaxed">
-              <p className="mb-4">
-                After a few weeks, Pryima starts recognizing your personal rhythms:
-              </p>
-              <ul className="space-y-3 list-none pl-0">
-                {[
-                  "Which foods consistently spike your glucose",
-                  "What days and times you sleep best",
-                  "Which workouts drain you vs. energize you",
-                  "What supplements actually move the needle",
-                  "How stress, environment, and habits shape your recovery"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#FF4A00] flex-shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-4">
-                Instead of guessing, Pryima maps your inputs (choices, behaviors, environment) to your outputs (energy, recovery, glucose, sleep, and more).
-              </p>
-            </div>
-
-            <div className="flex items-center gap-3 text-cyan-400 font-medium border-t border-white/10 pt-4">
-              <Zap className="w-5 h-5" />
-              <span>This is where Pryima graduates from data collection to true understanding.</span>
-            </div>
-          </div>
-
-          {/* Image Content - Second on Mobile, Right on Desktop */}
-          <div>
-            <div className="bg-[#0A0F1E] rounded-2xl border border-white/10 p-8 shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF4A00]/10 rounded-full blur-3xl pointer-events-none" />
-              
-              <div className="flex items-center justify-between mb-8 relative z-10">
-                <h3 className="text-white font-bold flex items-center gap-2">
-                  <TrendingUp size={18} className="text-cyan-400" />
-                  Correlation Detected
-                </h3>
-                <span className="px-2 py-1 bg-[#FF4A00]/10 border border-[#FF4A00]/20 text-[#FF4A00] text-xs rounded font-bold animate-pulse-slow">
-                  HIGH CONFIDENCE
-                </span>
-              </div>
-              
-              {/* Stylized Graph Mockup */}
-              <div className="space-y-8 relative z-10">
-                {/* Graph 1 */}
-                <div>
-                  <div className="flex justify-between text-xs text-gray-400 mb-2">
-                    <span className="uppercase tracking-wider font-bold">Late Meal (Impact)</span>
-                    <span className="text-[#FF4A00]">+2h Sleep Onset</span>
-                  </div>
-                  <div className="h-24 flex items-end gap-1 pb-1 border-b border-white/10">
-                     {[40, 60, 30, 80, 45, 90, 50, 60, 70, 80, 45, 55].map((h, i) => (
-                       <div key={i} className={`flex-1 rounded-t-sm transition-all duration-500 ${h > 70 ? 'bg-[#FF4A00] shadow-[0_0_10px_rgba(255,74,0,0.5)]' : 'bg-gray-800'}`} style={{height: `${h}%`}} />
-                     ))}
-                  </div>
-                </div>
-
-                {/* Graph 2 */}
-                <div>
-                  <div className="flex justify-between text-xs text-gray-400 mb-2">
-                    <span className="uppercase tracking-wider font-bold">Deep Sleep (Result)</span>
-                    <span className="text-cyan-400">-15% vs Baseline</span>
-                  </div>
-                  <div className="h-24 flex items-end gap-1 pb-1 border-b border-white/10">
-                     {[70, 65, 80, 40, 75, 30, 65, 50, 45, 40, 70, 60].map((h, i) => (
-                       <div key={i} className={`flex-1 rounded-t-sm transition-all duration-500 ${h < 50 ? 'bg-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.5)]' : 'bg-gray-800'}`} style={{height: `${h}%`}} />
-                     ))}
-                  </div>
-                </div>
-
-                <div className="p-4 bg-white/5 rounded-lg border border-white/10 text-sm text-gray-300 flex gap-3 items-start">
-                  <GitGraph className="text-cyan-400 w-5 h-5 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-white block mb-1">Pattern Found:</strong> 
-                    Eating after 8PM correlates with a 15% reduction in Deep Sleep duration.
-                  </div>
-                </div>
-              </div>
+            <p className="text-gray-400 text-lg leading-relaxed">
+              After a few weeks, Pryima starts recognizing your personal rhythms:
+            </p>
+            
+            <ul className="space-y-4">
+              {[
+                "Which foods consistently spike your glucose",
+                "What days and times you sleep best",
+                "Which workouts drain you vs. energize you",
+                "What supplements actually move the needle",
+                "How stress, environment, and habits shape your recovery"
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-gray-300">
+                   <div className="mt-1 text-[#FF4A00]">•</div>
+                   <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            
+            <p className="text-gray-400 text-lg leading-relaxed">
+              Instead of guessing, Pryima maps your inputs (choices, behaviors, environment) to your outputs (energy, recovery, glucose, sleep, and more).
+            </p>
+            
+            <div className="inline-block px-4 py-2 rounded-lg bg-[#FF4A00]/10 border border-[#FF4A00]/20 text-[#FF4A00] text-sm font-semibold">
+              This is where Pryima graduates from data collection to true understanding.
             </div>
           </div>
+
+          {/* Image Right */}
+          <div className="relative">
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#0A0F1E] p-6 shadow-2xl">
+               {/* Mock Dashboard */}
+               <div className="space-y-6">
+                  <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-4">
+                     <h3 className="text-white font-medium">Correlations Detected</h3>
+                     <span className="text-xs text-gray-500">Last 30 Days</span>
+                  </div>
+                  
+                  {/* Graph Mockup 1 */}
+                  <div className="space-y-2">
+                     <div className="flex justify-between text-xs text-gray-400">
+                        <span>Late Meals (>8pm)</span>
+                        <span className="text-red-400">-14% Deep Sleep</span>
+                     </div>
+                     <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-500/50 w-[85%]" />
+                     </div>
+                  </div>
+                  
+                  {/* Graph Mockup 2 */}
+                  <div className="space-y-2">
+                     <div className="flex justify-between text-xs text-gray-400">
+                        <span>Magnesium Intake</span>
+                        <span className="text-green-400">+12% HRV</span>
+                     </div>
+                     <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                        <div className="h-full bg-green-500/50 w-[65%]" />
+                     </div>
+                  </div>
+                  
+                  {/* Chart Visual */}
+                  <div className="mt-6 h-40 flex items-end justify-between gap-1 px-2">
+                     {[40, 65, 45, 80, 55, 90, 70, 85, 60, 75].map((h, i) => (
+                        <div key={i} className="w-full bg-gradient-to-t from-[#FF4A00]/20 to-[#FF4A00] rounded-t-sm hover:opacity-100 opacity-70 transition-opacity" style={{ height: `${h}%` }} />
+                     ))}
+                  </div>
+                  
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/80 backdrop-blur-xl border border-[#FF4A00] px-6 py-3 rounded-xl shadow-xl">
+                     <div className="text-[#FF4A00] text-xs font-bold uppercase tracking-widest mb-1">Insight Found</div>
+                     <div className="text-white text-sm">High Cortisol correlates with low recovery on Mondays.</div>
+                  </div>
+               </div>
+            </div>
+            
+            {/* Glow */}
+            <div className="absolute -inset-10 bg-[#FF4A00]/5 rounded-full blur-3xl -z-10" />
+          </div>
+          
         </div>
       </div>
     </section>
