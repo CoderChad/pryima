@@ -25,7 +25,7 @@ export default function HealthGraph() {
           <img 
             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/deb6da8c5_ChatGPTImageDec2202509_06_30PM.png" 
             alt="Multimodal Health Dashboard" 
-            className="w-full max-w-6xl h-auto object-contain rounded-xl"
+            className="w-full max-w-6xl h-auto object-contain rounded-xl opacity-80 mix-blend-screen hover:opacity-100 transition-all duration-500"
           />
         </div>
       </div>
