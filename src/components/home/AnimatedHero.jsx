@@ -29,7 +29,7 @@ const LogoRain = () => {
         y: Math.random() * canvas.height - canvas.height,
         speed: 1 + Math.random() * 2,
         size: 15 + Math.random() * 25,
-        opacity: 0.1 + Math.random() * 0.3,
+        opacity: 0.3 + Math.random() * 0.4,
       });
     }
 

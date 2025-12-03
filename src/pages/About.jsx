@@ -50,8 +50,8 @@ export default function About() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-24">
         
         {/* Introduction & Portrait */}
-        <section className="grid md:grid-cols-2 gap-12 items-start">
-          <div className="order-2 md:order-1 space-y-6 text-gray-400 text-lg leading-relaxed">
+        <section className="max-w-3xl mx-auto">
+          <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
             <p>
               For years, I obsessed over understanding why some people seem to unlock high-performance lives—stable energy, better recovery, sharper cognition, faster fat loss—while others with the same discipline couldn’t.
             </p>
@@ -61,16 +61,6 @@ export default function About() {
             <p className="text-white font-medium border-l-4 border-[#FF4A00] pl-4">
               Pryima was born to close that gap.
             </p>
-          </div>
-          <div className="order-1 md:order-2">
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#FF4A00]/10 to-transparent mix-blend-overlay z-10" />
-              <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/431cd5e75_pryimapic.pdf" 
-                alt="Chad Thomas" 
-                className="w-full h-full object-cover"
-              />
-            </div>
           </div>
         </section>
 
