@@ -8,10 +8,11 @@ export default function HIWHero() {
     <section className="relative pt-32 pb-20 bg-gradient-to-b from-[#02040A] to-[#0A0F1E] overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#00F0FF]/5 to-transparent pointer-events-none" />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cyan-500/5 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Text Content */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -36,7 +37,7 @@ export default function HIWHero() {
             </div>
 
             <p className="text-gray-400 leading-relaxed text-lg">
-              Pryima isn't a static dashboard. It's a self-advancing, self-adapting health intelligence system built on a custom-trained Anthropic model that continuously learns your biology, your behaviors, and your responses. The longer you use it, the more it feels like a digital twin that truly understands you.
+              Pryima isn’t a static dashboard. It’s a self-advancing, self-adapting health intelligence system built on a custom-trained Anthropic model that continuously learns your biology, your behaviors, and your responses. The longer you use it, the more it feels like a digital twin that truly understands you.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -66,12 +67,12 @@ export default function HIWHero() {
               />
               
               {/* Overlay UI Elements */}
-              <div className="absolute top-1/4 left-8 p-4 bg-black/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-lg">
+              <div className="absolute top-1/4 left-8 p-4 bg-black/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-lg animate-pulse-slow">
                 <div className="text-xs text-cyan-400 font-mono mb-1">GLUCOSE PREDICTION</div>
                 <div className="text-white font-bold text-lg">Stable (85-95 mg/dL)</div>
               </div>
 
-              <div className="absolute bottom-1/4 right-8 p-4 bg-black/80 backdrop-blur-md border border-[#FF4A00]/30 rounded-lg shadow-lg text-right">
+              <div className="absolute bottom-1/4 right-8 p-4 bg-black/80 backdrop-blur-md border border-[#FF4A00]/30 rounded-lg shadow-lg text-right animate-pulse-slow delay-700">
                 <div className="text-xs text-[#FF4A00] font-mono mb-1">METABOLIC SCORE</div>
                 <div className="text-white font-bold text-lg">Optimizing...</div>
               </div>

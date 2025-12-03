@@ -1,13 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Beaker, Dna } from "lucide-react";
+import { Dna, FlaskConical, Activity, Fingerprint } from "lucide-react";
 
 export default function Step1Baseline() {
   return (
-    <section className="py-24 bg-[#02040A] border-t border-white/5">
+    <section className="py-24 bg-[#02040A] border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Text Content */}
+          {/* Text Content - Left */}
           <div className="order-2 lg:order-1">
             <div className="inline-block px-3 py-1 mb-4 rounded bg-white/5 border border-white/10 text-cyan-400 text-xs font-mono uppercase tracking-wider">
               Step 1 · Your Biological Baseline
@@ -21,7 +21,7 @@ export default function Step1Baseline() {
               <p className="mb-4">
                 Before Pryima ever tells you what to do, it listens. Your journey begins with at-home testing that builds your core biological signature:
               </p>
-              <ul className="space-y-2 list-none pl-0">
+              <ul className="space-y-3 list-none pl-0">
                 {[
                   "1200-marker genetic blueprint (via SelfDecode)",
                   "Gut microbiome insights (Biomes.world)",
@@ -41,36 +41,40 @@ export default function Step1Baseline() {
             </div>
 
             <div className="p-6 rounded-xl bg-gradient-to-r from-cyan-500/10 to-transparent border-l-4 border-cyan-500">
+              <div className="flex items-center gap-2 mb-2 text-cyan-400">
+                <Fingerprint size={20} />
+                <span className="font-bold text-sm uppercase tracking-wider">Health Fingerprint</span>
+              </div>
               <p className="text-cyan-100 italic">
                 “Pryima uses this data to build your initial ‘health fingerprint’ — a unique profile that no generic app or one-size-fits-all program can match.”
               </p>
             </div>
           </div>
 
-          {/* Image Content */}
+          {/* Image Content - Right */}
           <div className="order-1 lg:order-2 relative">
             <div className="relative rounded-2xl bg-white/5 border border-white/10 p-8 aspect-square flex items-center justify-center overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
-              {/* Abstract Kit Representation */}
+              {/* Test Kit Image */}
               <img 
                 src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=2030&auto=format&fit=crop" 
-                alt="Pryima Test Kits" 
+                alt="Pryima At-Home Test Kits" 
                 className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:scale-105 transition-transform duration-700"
               />
               
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative bg-black/60 backdrop-blur-xl p-8 rounded-full border border-white/20 shadow-2xl">
-                  <Dna className="w-12 h-12 text-cyan-400" />
+                <div className="relative bg-black/60 backdrop-blur-xl p-8 rounded-full border border-white/20 shadow-2xl border-cyan-500/30">
+                  <FlaskConical className="w-12 h-12 text-cyan-400" />
                 </div>
               </div>
 
               {/* Floating Badges */}
-              <div className="absolute top-10 right-10 bg-black/80 backdrop-blur px-3 py-1 rounded border border-[#FF4A00]/30 text-[#FF4A00] text-xs font-bold">
+              <div className="absolute top-12 right-12 bg-black/80 backdrop-blur px-3 py-1 rounded border border-[#FF4A00]/30 text-[#FF4A00] text-xs font-bold shadow-lg">
                 GENETICS
               </div>
-              <div className="absolute bottom-10 left-10 bg-black/80 backdrop-blur px-3 py-1 rounded border border-purple-500/30 text-purple-400 text-xs font-bold">
-                HORMONES
+              <div className="absolute bottom-12 left-12 bg-black/80 backdrop-blur px-3 py-1 rounded border border-cyan-500/30 text-cyan-400 text-xs font-bold shadow-lg">
+                MICROBIOME
               </div>
             </div>
           </div>

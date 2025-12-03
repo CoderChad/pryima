@@ -1,12 +1,12 @@
 import React from "react";
-import { GitGraph, Zap } from "lucide-react";
+import { GitGraph, Zap, TrendingUp } from "lucide-react";
 
 export default function Step3PatternRecognition() {
   return (
     <section className="py-24 bg-[#02040A] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Text Content */}
+          {/* Text Content - Left */}
           <div className="order-2 lg:order-1">
             <div className="inline-block px-3 py-1 mb-4 rounded bg-white/5 border border-white/10 text-cyan-400 text-xs font-mono uppercase tracking-wider">
               Step 3 · Pattern Recognition
@@ -20,7 +20,7 @@ export default function Step3PatternRecognition() {
               <p className="mb-4">
                 After a few weeks, Pryima starts recognizing your personal rhythms:
               </p>
-              <ul className="space-y-2 list-none pl-0">
+              <ul className="space-y-3 list-none pl-0">
                 {[
                   "Which foods consistently spike your glucose",
                   "What days and times you sleep best",
@@ -39,50 +39,61 @@ export default function Step3PatternRecognition() {
               </p>
             </div>
 
-            <div className="flex items-center gap-3 text-cyan-400 font-medium">
+            <div className="flex items-center gap-3 text-cyan-400 font-medium border-t border-white/10 pt-4">
               <Zap className="w-5 h-5" />
               <span>This is where Pryima graduates from data collection to true understanding.</span>
             </div>
           </div>
 
-          {/* Image Content */}
+          {/* Image Content - Right */}
           <div className="order-1 lg:order-2">
-            <div className="bg-[#0A0F1E] rounded-2xl border border-white/10 p-8 shadow-2xl">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="text-white font-bold">Correlation Detected</h3>
-                <span className="px-2 py-1 bg-[#FF4A00]/20 text-[#FF4A00] text-xs rounded font-bold">HIGH CONFIDENCE</span>
+            <div className="bg-[#0A0F1E] rounded-2xl border border-white/10 p-8 shadow-2xl relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF4A00]/10 rounded-full blur-3xl pointer-events-none" />
+              
+              <div className="flex items-center justify-between mb-8 relative z-10">
+                <h3 className="text-white font-bold flex items-center gap-2">
+                  <TrendingUp size={18} className="text-cyan-400" />
+                  Correlation Detected
+                </h3>
+                <span className="px-2 py-1 bg-[#FF4A00]/10 border border-[#FF4A00]/20 text-[#FF4A00] text-xs rounded font-bold animate-pulse-slow">
+                  HIGH CONFIDENCE
+                </span>
               </div>
               
               {/* Stylized Graph Mockup */}
-              <div className="space-y-6">
+              <div className="space-y-8 relative z-10">
                 {/* Graph 1 */}
                 <div>
-                  <div className="flex justify-between text-xs text-gray-500 mb-1">
-                    <span>Late Meal (Impact)</span>
-                    <span>+2h Sleep Onset</span>
+                  <div className="flex justify-between text-xs text-gray-400 mb-2">
+                    <span className="uppercase tracking-wider font-bold">Late Meal (Impact)</span>
+                    <span className="text-[#FF4A00]">+2h Sleep Onset</span>
                   </div>
-                  <div className="h-16 flex items-end gap-1 pb-1 border-b border-white/10">
-                     {[40, 60, 30, 80, 45, 90, 50, 60, 70, 80].map((h, i) => (
-                       <div key={i} className={`flex-1 rounded-t-sm ${h > 70 ? 'bg-[#FF4A00]' : 'bg-gray-700'}`} style={{height: `${h}%`}} />
+                  <div className="h-24 flex items-end gap-1 pb-1 border-b border-white/10">
+                     {[40, 60, 30, 80, 45, 90, 50, 60, 70, 80, 45, 55].map((h, i) => (
+                       <div key={i} className={`flex-1 rounded-t-sm transition-all duration-500 ${h > 70 ? 'bg-[#FF4A00] shadow-[0_0_10px_rgba(255,74,0,0.5)]' : 'bg-gray-800'}`} style={{height: `${h}%`}} />
                      ))}
                   </div>
                 </div>
 
                 {/* Graph 2 */}
                 <div>
-                  <div className="flex justify-between text-xs text-gray-500 mb-1">
-                    <span>Deep Sleep (Result)</span>
-                    <span>-15% vs Baseline</span>
+                  <div className="flex justify-between text-xs text-gray-400 mb-2">
+                    <span className="uppercase tracking-wider font-bold">Deep Sleep (Result)</span>
+                    <span className="text-cyan-400">-15% vs Baseline</span>
                   </div>
-                  <div className="h-16 flex items-end gap-1 pb-1 border-b border-white/10">
-                     {[70, 65, 80, 40, 75, 30, 65, 50, 45, 40].map((h, i) => (
-                       <div key={i} className={`flex-1 rounded-t-sm ${h < 50 ? 'bg-cyan-500' : 'bg-gray-700'}`} style={{height: `${h}%`}} />
+                  <div className="h-24 flex items-end gap-1 pb-1 border-b border-white/10">
+                     {[70, 65, 80, 40, 75, 30, 65, 50, 45, 40, 70, 60].map((h, i) => (
+                       <div key={i} className={`flex-1 rounded-t-sm transition-all duration-500 ${h < 50 ? 'bg-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.5)]' : 'bg-gray-800'}`} style={{height: `${h}%`}} />
                      ))}
                   </div>
                 </div>
 
-                <div className="p-4 bg-white/5 rounded-lg border border-white/10 text-sm text-gray-300">
-                  <strong>Pattern Found:</strong> Eating after 8PM correlates with a 15% reduction in Deep Sleep duration.
+                <div className="p-4 bg-white/5 rounded-lg border border-white/10 text-sm text-gray-300 flex gap-3 items-start">
+                  <GitGraph className="text-cyan-400 w-5 h-5 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="text-white block mb-1">Pattern Found:</strong> 
+                    Eating after 8PM correlates with a 15% reduction in Deep Sleep duration.
+                  </div>
                 </div>
               </div>
             </div>

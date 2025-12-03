@@ -28,19 +28,22 @@ export default function Step6CompoundingIntelligence() {
           </p>
         </div>
 
-        {/* Timeline Visual */}
-        <div className="relative mb-16">
-          {/* Connecting Line */}
-          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-gray-800 via-cyan-500/50 to-purple-500/50 -translate-y-1/2 hidden md:block" />
+        {/* Timeline Visual - Curved Road Trajectory */}
+        <div className="relative mb-20 max-w-4xl mx-auto">
+          {/* Horizontal Line */}
+          <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-gray-800 via-cyan-500/50 to-purple-500/50 -translate-y-1/2" />
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="flex justify-between relative">
             {milestones.map((m, i) => (
               <div key={i} className="relative flex flex-col items-center text-center group">
-                <div className={`w-16 h-16 rounded-2xl bg-[#0A0F1E] border border-white/10 flex items-center justify-center mb-4 z-10 transition-all duration-500 group-hover:scale-110 group-hover:border-[#FF4A00]/50 group-hover:shadow-[0_0_30px_rgba(255,74,0,0.2)]`}>
-                  <m.icon className={`w-8 h-8 ${m.color}`} />
+                <div className={`w-16 h-16 rounded-full bg-[#0A0F1E] border-4 border-[#050814] ring-1 ring-white/10 flex items-center justify-center mb-4 z-10 transition-all duration-500 group-hover:scale-110 group-hover:ring-${m.color.split('-')[1]}-500 shadow-xl`}>
+                  <m.icon className={`w-6 h-6 ${m.color}`} />
                 </div>
-                <div className="text-xs font-mono text-gray-500 mb-1">{m.day}</div>
-                <div className="text-white font-bold">{m.label}</div>
+                <div className="text-xs font-mono text-gray-500 mb-1 uppercase tracking-widest">{m.day}</div>
+                <div className="text-white font-bold text-lg">{m.label}</div>
+                
+                {/* Glow effect on hover */}
+                <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-20 h-20 bg-${m.color.split('-')[1]}-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity -z-10`} />
               </div>
             ))}
           </div>
@@ -55,14 +58,14 @@ export default function Step6CompoundingIntelligence() {
             "Warning you when your gut or skin microbiome may need support",
             "Adjusting for seasonal, hormonal, or lifestyle shifts"
           ].map((item, i) => (
-            <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-              <TrendingUp className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
-              <span className="text-gray-300 text-sm">{item}</span>
+            <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-500/30 transition-all duration-300 group">
+              <TrendingUp className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
+              <span className="text-gray-300 text-sm group-hover:text-white transition-colors">{item}</span>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-16">
+        <div className="text-center mt-20">
           <p className="text-xl md:text-2xl font-light text-white">
             This is what it feels like when your health finally has <span className="text-cyan-400 font-normal">its own AI lab.</span>
           </p>
