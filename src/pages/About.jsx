@@ -1,94 +1,172 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Brain, Activity, Globe, Database, Shield, Zap } from "lucide-react";
 
 export default function About() {
+  const visionPoints = [
+    { icon: Brain, text: "AI coaches that adapt like real clinicians" },
+    { icon: Activity, text: "Predictive engines that detect health issues before symptoms appear" },
+    { icon: Database, text: "Multi-agent systems that negotiate nutrition, training, sleep, stress, and recovery recommendations" },
+    { icon: Globe, text: "A Health OS that personalizes itself around your biology the way Netflix personalizes content" },
+    { icon: Zap, text: "Continuous learning models that refine your protocol daily, not yearly" }
+  ];
+
+  const whyPoints = [
+    "Connects genetics, blood work, microbiome, wearable data, and real-time physiology into one system",
+    "Gives people the type of personalized coaching that was once only available to elite athletes and concierge medicine clients",
+    "Adapts to your life situation, stress levels, environment, and goals over time",
+    "Makes data feel human, not clinical—something you can use, not something that overwhelms you",
+    "Protects your privacy with HIPAA-aware flows, consent-based data sharing, and optional zero-knowledge modes",
+    "Grows more intelligent with every input, turning into a lifelong precision-health companion"
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#02040A] to-[#050814] py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-white to-[#FF4A00] bg-clip-text text-transparent">
-              About Pryima
-            </span>
-          </h1>
-          <p className="text-gray-400 text-xl">
-            Building the future of personalized health
-          </p>
+    <div className="min-h-screen bg-[#02040A] text-white">
+      {/* Hero / Header */}
+      <section className="pt-32 pb-20 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#FF4A00]/5 to-transparent pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              About the Creator — <br/>
+              <span className="bg-gradient-to-r from-[#FF4A00] to-[#FF6B00] bg-clip-text text-transparent">
+                Chad Thomas
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 font-light italic">
+              "I built Pryima because I was tired of the guesswork."
+            </p>
+          </motion.div>
         </div>
+      </section>
 
-        <div className="space-y-12">
-          {/* About Me / Founder Section */}
-          <div className="rounded-2xl border border-[#FF4A00]/30 bg-gradient-to-br from-black/80 to-[#050814]/80 backdrop-blur-md p-8 flex flex-col md:flex-row gap-8 items-center">
-            <div className="w-48 h-48 flex-shrink-0 rounded-full overflow-hidden border-4 border-[#FF4A00]/20 bg-gray-800">
-              <img 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop" 
-                alt="Founder" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex-1 text-center md:text-left">
-              <h2 className="text-3xl font-bold text-white mb-2">Meet the Founder</h2>
-              <p className="text-[#FF4A00] font-medium mb-4">CEO & Founder</p>
-              <p className="text-gray-400 leading-relaxed">
-                "I built Pryima because I was tired of having data scattered across five different apps. I wanted a single place where my genetics, labs, and daily metrics could talk to each other—and actually tell me what to do. This isn't just a dashboard; it's the health OS I wish I had ten years ago."
-              </p>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-[#FF4A00]/30 bg-gradient-to-br from-black/80 to-[#050814]/80 backdrop-blur-md p-8">
-            <h2 className="text-3xl font-bold text-white mb-4">Our Mission</h2>
-            <p className="text-gray-400 text-lg leading-relaxed">
-              Pryima is building the world's first true Health OS—a system that transforms raw health data from genetics, labs, microbiome, and wearables into actionable intelligence. We believe everyone deserves to understand their biology at a deep level and have the tools to optimize their health on their own terms.
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-24">
+        
+        {/* Introduction & Portrait */}
+        <section className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="order-2 md:order-1 space-y-6 text-gray-400 text-lg leading-relaxed">
+            <p>
+              For years, I obsessed over understanding why some people seem to unlock high-performance lives—stable energy, better recovery, sharper cognition, faster fat loss—while others with the same discipline couldn’t.
+            </p>
+            <p>
+              I realized the difference wasn’t motivation or willpower. <strong className="text-white">The difference was information.</strong> Some people had access to structured data, clinical insight, and personalized coaching. Most people didn’t.
+            </p>
+            <p className="text-white font-medium border-l-4 border-[#FF4A00] pl-4">
+              Pryima was born to close that gap.
             </p>
           </div>
-
-          <div className="rounded-2xl border border-[#FF4A00]/30 bg-gradient-to-br from-black/80 to-[#050814]/80 backdrop-blur-md p-8">
-            <h2 className="text-3xl font-bold text-white mb-4">Why We're Different</h2>
-            <div className="space-y-4 text-gray-400 text-lg leading-relaxed">
-              <p>
-                Unlike traditional health apps that focus on a single data source, Pryima integrates everything—your DNA, blood biomarkers, gut microbiome, continuous glucose, and wearable data—into one unified operating system.
-              </p>
-              <p>
-                Our AI doesn't just show you numbers. It decodes patterns across your entire biology and translates them into daily actions: what to eat, when to train, how to recover, and how to track your progress over time.
-              </p>
+          <div className="order-1 md:order-2">
+            <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#FF4A00]/20 to-transparent mix-blend-overlay z-10" />
+              <img 
+                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop" 
+                alt="Chad Thomas" 
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              />
             </div>
           </div>
+        </section>
 
-          <div className="rounded-2xl border border-[#FF4A00]/30 bg-gradient-to-br from-black/80 to-[#050814]/80 backdrop-blur-md p-8">
-            <h2 className="text-3xl font-bold text-white mb-4">Founding Cohort Benefits</h2>
-            <ul className="space-y-3 text-gray-400 text-lg">
-              <li className="flex items-start gap-3">
-                <span className="text-[#FF4A00] font-bold">•</span>
-                <span>Lock in founding member pricing (save up to 50%)</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#FF4A00] font-bold">•</span>
-                <span>Lifetime access option (Full Omics tier)</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#FF4A00] font-bold">•</span>
-                <span>Priority access to new features and testing pilots</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#FF4A00] font-bold">•</span>
-                <span>Direct feedback channel to shape the product</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#FF4A00] font-bold">•</span>
-                <span>Exclusive Founding Member badge in the app</span>
-              </li>
-            </ul>
+        {/* Mission */}
+        <section className="space-y-8">
+          <h2 className="text-3xl font-bold text-white">A Personal Mission Turned Global Vision</h2>
+          <div className="prose prose-invert max-w-none text-gray-400 text-lg leading-relaxed space-y-6">
+            <p>
+              I started Pryima out of a personal desire to know exactly what was happening in my body—from hormones to genetics to microbiome activity—and to have a system that could translate that raw complexity into simple, actionable steps I could actually follow.
+            </p>
+            <p>
+              What I wanted did not exist. Not in a single platform. Not in a way that honored privacy. Not in a way that used AI responsibly. Not in a way that understood that human health is a living system, not a one-time test.
+            </p>
+            <p>
+              <strong className="text-white">So I built it.</strong>
+            </p>
+            <p>
+              Pryima is my attempt to create the world’s first adaptive Health OS: <span className="text-cyan-400">a platform that doesn’t just measure you, but learns you… and gets smarter the longer you use it.</span>
+            </p>
+          </div>
+        </section>
+
+        {/* Why I Created Pryima */}
+        <section className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm">
+          <h2 className="text-3xl font-bold text-white mb-8">Why I Created Pryima</h2>
+          <p className="text-gray-300 mb-8">I wanted an experience that:</p>
+          
+          <div className="grid gap-4">
+            {whyPoints.map((point, i) => (
+              <div key={i} className="flex items-start gap-4">
+                <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#FF4A00] flex-shrink-0" />
+                <p className="text-gray-400">{point}</p>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-8 pt-8 border-t border-white/10">
+            <p className="text-white font-medium italic">
+              "This isn’t just an app. It’s a framework for how health optimization should work in the age of AI."
+            </p>
+          </div>
+        </section>
+
+        {/* The Future */}
+        <section className="space-y-8">
+          <div className="flex items-center gap-3 text-cyan-400 mb-2">
+            <Brain size={20} />
+            <span className="text-sm font-mono uppercase tracking-widest">The Vision</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">The Future: Pryima as an AI Studio</h2>
+          
+          <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
+            <p>
+              Pryima is only the beginning. My long-term vision is to transform Pryima into an AI studio of its own—a pipeline where breakthroughs in agentic systems, digital coaching, federated learning, and real-time physiology modeling evolve into new products, new health experiences, and new ways for humans to understand themselves.
+            </p>
+            <p className="text-white font-medium">Imagine:</p>
           </div>
 
-          <div className="text-center pt-8">
-            <Link to="/signup">
-              <Button className="bg-gradient-to-r from-[#FF4A00] to-[#FF6B00] hover:from-[#FF5A10] hover:to-[#FF7B10] text-white px-12 py-6 text-xl font-bold shadow-2xl shadow-[#FF4A00]/50">
-                Join the Founding Cohort
-              </Button>
-            </Link>
+          <div className="grid md:grid-cols-2 gap-6">
+            {visionPoints.map((item, i) => (
+              <div key={i} className="p-6 rounded-xl bg-[#0A0F1E] border border-white/5 hover:border-cyan-500/30 transition-colors group">
+                <item.icon className="w-8 h-8 text-cyan-500 mb-4 group-hover:scale-110 transition-transform" />
+                <p className="text-gray-300">{item.text}</p>
+              </div>
+            ))}
           </div>
-        </div>
+
+          <p className="text-gray-400 text-lg leading-relaxed mt-6">
+            This is where Pryima is heading—toward a future where health is no longer reactive but fully optimized, autonomous, and deeply personal.
+          </p>
+        </section>
+
+        {/* Who I Am */}
+        <section className="relative p-8 md:p-12 rounded-3xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#FF4A00] to-[#FF6B00] opacity-10" />
+          <div className="relative z-10">
+            <h2 className="text-3xl font-bold text-white mb-6">Who I Am</h2>
+            <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
+              <p>
+                I’m an engineer, researcher, and founder who lives at the intersection of AI, health optimization, and human performance. I’ve spent years building AI-driven pipelines, experimenting with biomarker systems, analyzing lifestyle data, and obsessing over how to use machine intelligence to make people stronger, healthier, happier, and more self-aware.
+              </p>
+              <p>
+                Pryima is the culmination of that journey—my attempt to build the tool I needed, and in the process, offer it to the world.
+              </p>
+            </div>
+            
+            <div className="mt-10">
+              <Link to="/signup">
+                <Button className="bg-[#FF4A00] hover:bg-[#FF5A10] text-white px-8 py-6 text-lg font-bold shadow-lg shadow-[#FF4A00]/20">
+                  Join Me in the Founding Cohort
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
