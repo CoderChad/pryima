@@ -183,6 +183,14 @@ export default function DNASection() {
           {/* DNA Helix - Center - MUCH LARGER */}
           <div className="hidden lg:block absolute left-1/2 top-0 -translate-x-1/2 w-[500px] h-[1800px]">
             <DNAHelix highlightedRung={hoveredStep !== null ? steps[hoveredStep].rungIndex : null} />
+            {/* Inserted Logo */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-80 mix-blend-screen">
+                <img 
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/0b8efea0d_20250914_2023_BlackBackgroundLogo_remix_01k55fe37weqq81p9zc23pxbc61.png" 
+                    alt="Pryima Logo" 
+                    className="w-64 h-64 object-contain animate-pulse-slow"
+                />
+            </div>
           </div>
 
           {/* Mobile DNA */}
