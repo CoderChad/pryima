@@ -5,7 +5,6 @@ import DNASection from "../components/home/DNASection";
 import FeatureShowcase from "../components/home/FeatureShowcase";
 import PersonasSection from "../components/home/PersonasSection";
 import WhyPryima from "../components/home/WhyPryima";
-import QuizPreview from "../components/home/QuizPreview";
 import DataStackSection from "../components/home/DataStackSection";
 import PricingSection from "../components/home/PricingSection";
 import WearablesIntegration from "../components/home/WearablesIntegration";
@@ -20,7 +19,6 @@ export default function Home() {
       <DNASection />
       <PersonasSection />
       <WhyPryima />
-      <QuizPreview />
       <DataStackSection />
       <PricingSection />
       <WearablesIntegration />

@@ -39,11 +39,11 @@ export default function WhyPryima() {
     <section className="py-20 relative overflow-hidden bg-[#02040A]">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#02040A] via-[#02040A]/80 to-[#02040A] z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#02040A] via-[#02040A]/30 to-[#02040A] z-10" />
         <img 
           src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/7a07fc3e6_IMG_4330.jpg" 
           alt="Background" 
-          className="w-full h-full object-cover opacity-50 grayscale"
+          className="w-full h-full object-cover opacity-80"
         />
       </div>
 
