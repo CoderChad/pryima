@@ -17,8 +17,8 @@ export default function TechHero() {
       
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-0"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <div className="inline-block px-4 py-1.5 mb-6 rounded-full border border-[#FF4A00]/30 bg-[#FF4A00]/10 backdrop-blur-md">
-          <span className="text-[#FF4A00] font-mono text-sm">Pryima Intelligence Engine</span>
+        <div className="inline-block px-5 py-2 mb-6 rounded-full border border-[#FF4A00] bg-[#FF4A00]/20 backdrop-blur-md shadow-[0_0_15px_rgba(255,74,0,0.3)]">
+          <span className="text-[#FF4A00] font-bold font-mono text-sm tracking-wide drop-shadow-sm">Pryima Intelligence Engine</span>
         </div>
         <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
           How Pryima's AI <br />
