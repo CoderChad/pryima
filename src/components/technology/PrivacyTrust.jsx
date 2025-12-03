@@ -3,15 +3,15 @@ import { Shield, Lock, FileCheck, EyeOff } from "lucide-react";
 
 export default function PrivacyTrust() {
   return (
-    <section className="relative py-24 bg-[#02040A] overflow-hidden">
+    <section className="relative py-32 bg-[#02040A] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
           src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/448e3a25d_IMG_0158.jpg" 
           alt="Active Lifestyle" 
-          className="w-full h-full object-cover opacity-40 grayscale mix-blend-luminosity"
+          className="w-full h-full object-cover object-center opacity-60 grayscale mix-blend-luminosity"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#02040A] via-[#02040A]/90 to-[#02040A]/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#02040A] via-[#02040A]/80 to-[#02040A]/60"></div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

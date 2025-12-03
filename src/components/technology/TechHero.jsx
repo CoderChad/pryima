@@ -10,9 +10,9 @@ export default function TechHero() {
         <img 
           src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/83df75c6a_IMG_0167.jpg" 
           alt="DNA Background" 
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#02040A] via-[#02040A]/90 to-[#02040A]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#02040A] via-[#02040A]/80 to-[#02040A]"></div>
       </div>
       
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 z-0"></div>
