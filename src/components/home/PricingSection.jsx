@@ -139,7 +139,7 @@ export default function PricingSection() {
                   {tier.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-[#FF4A00] flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-300 text-sm">{feature}</span>
+                      <span className="text-gray-300 text-base">{feature}</span>
                     </li>
                   ))}
                 </ul>
