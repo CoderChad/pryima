@@ -2,13 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Brain, Activity, Globe, Database, Shield, Zap } from "lucide-react";
+import { ArrowRight, Brain, Activity, Globe, Database, Shield, Zap, Heart } from "lucide-react";
 
 export default function About() {
   const visionPoints = [
     { icon: Brain, text: "AI coaches that adapt like real clinicians" },
     { icon: Activity, text: "Predictive engines that detect health issues before symptoms appear" },
-    { icon: Database, text: "Multi-agent systems that negotiate nutrition, training, sleep, stress, and recovery recommendations" },
+    { icon: Database, text: "Multi-agent systems that negotiate nutrition, training, sleep, stress, and recovery recommendations on your behalf" },
     { icon: Globe, text: "A Health OS that personalizes itself around your biology the way Netflix personalizes content" },
     { icon: Zap, text: "Continuous learning models that refine your protocol daily, not yearly" }
   ];
@@ -50,7 +50,7 @@ export default function About() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-24">
         
         {/* Introduction & Portrait */}
-        <section className="grid md:grid-cols-2 gap-12 items-center">
+        <section className="grid md:grid-cols-2 gap-12 items-start">
           <div className="order-2 md:order-1 space-y-6 text-gray-400 text-lg leading-relaxed">
             <p>
               For years, I obsessed over understanding why some people seem to unlock high-performance lives—stable energy, better recovery, sharper cognition, faster fat loss—while others with the same discipline couldn’t.
@@ -63,12 +63,12 @@ export default function About() {
             </p>
           </div>
           <div className="order-1 md:order-2">
-            <div className="relative aspect-square rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#FF4A00]/20 to-transparent mix-blend-overlay z-10" />
+            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#FF4A00]/10 to-transparent mix-blend-overlay z-10" />
               <img 
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop" 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/454a8138f_pryimapic.pdf" 
                 alt="Chad Thomas" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
@@ -124,7 +124,10 @@ export default function About() {
           
           <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
             <p>
-              Pryima is only the beginning. My long-term vision is to transform Pryima into an AI studio of its own—a pipeline where breakthroughs in agentic systems, digital coaching, federated learning, and real-time physiology modeling evolve into new products, new health experiences, and new ways for humans to understand themselves.
+              Pryima is only the beginning.
+            </p>
+            <p>
+              My long-term vision is to transform Pryima into an AI studio of its own—a pipeline where breakthroughs in agentic systems, digital coaching, federated learning, and real-time physiology modeling evolve into new products, new health experiences, and new ways for humans to understand themselves.
             </p>
             <p className="text-white font-medium">Imagine:</p>
           </div>
@@ -144,8 +147,8 @@ export default function About() {
         </section>
 
         {/* Who I Am */}
-        <section className="relative p-8 md:p-12 rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#FF4A00] to-[#FF6B00] opacity-10" />
+        <section className="relative p-8 md:p-12 rounded-3xl overflow-hidden bg-[#0A0F1E] border border-white/10">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#FF4A00]/5 to-[#FF6B00]/5" />
           <div className="relative z-10">
             <h2 className="text-3xl font-bold text-white mb-6">Who I Am</h2>
             <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
@@ -159,7 +162,7 @@ export default function About() {
             
             <div className="mt-10">
               <Link to="/signup">
-                <Button className="bg-[#FF4A00] hover:bg-[#FF5A10] text-white px-8 py-6 text-lg font-bold shadow-lg shadow-[#FF4A00]/20">
+                <Button className="bg-[#FF4A00] hover:bg-[#FF5A10] text-white px-8 py-6 text-lg font-bold shadow-lg shadow-[#FF4A00]/20 w-full md:w-auto">
                   Join Me in the Founding Cohort
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>

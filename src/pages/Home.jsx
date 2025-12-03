@@ -1,5 +1,6 @@
 import React from "react";
 import AnimatedHero from "../components/home/AnimatedHero";
+import CityVisual from "../components/home/CityVisual";
 import DNASection from "../components/home/DNASection";
 import FeatureShowcase from "../components/home/FeatureShowcase";
 import PersonasSection from "../components/home/PersonasSection";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <div className="bg-[#02040A]">
       <AnimatedHero />
+      <CityVisual />
       <FeatureShowcase />
       <DNASection />
       <PersonasSection />
