@@ -139,41 +139,24 @@ export default function About() {
         {/* Who I Am */}
         <section className="relative p-8 md:p-12 rounded-3xl overflow-hidden bg-[#0A0F1E] border border-white/10">
           <div className="absolute inset-0 bg-gradient-to-br from-[#FF4A00]/5 to-[#FF6B00]/5" />
-          <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <h2 className="text-3xl font-bold text-white mb-6">Who I Am</h2>
-              <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
-                <p>
-                  I’m an engineer, researcher, and founder who lives at the intersection of AI, health optimization, and human performance. I’ve spent years building AI-driven pipelines, experimenting with biomarker systems, analyzing lifestyle data, and obsessing over how to use machine intelligence to make people stronger, healthier, happier, and more self-aware.
-                </p>
-                <p>
-                  Pryima is the culmination of that journey—my attempt to build the tool I needed, and in the process, offer it to the world.
-                </p>
-              </div>
-              
-              <div className="mt-10">
-                <Link to="/signup">
-                  <Button className="bg-[#FF4A00] hover:bg-[#FF5A10] text-white px-8 py-6 text-lg font-bold shadow-lg shadow-[#FF4A00]/20 w-full md:w-auto">
-                    Join Me in the Founding Cohort
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-              </div>
+          <div className="relative z-10">
+            <h2 className="text-3xl font-bold text-white mb-6">Who I Am</h2>
+            <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
+              <p>
+                I’m an engineer, researcher, and founder who lives at the intersection of AI, health optimization, and human performance. I’ve spent years building AI-driven pipelines, experimenting with biomarker systems, analyzing lifestyle data, and obsessing over how to use machine intelligence to make people stronger, healthier, happier, and more self-aware.
+              </p>
+              <p>
+                Pryima is the culmination of that journey—my attempt to build the tool I needed, and in the process, offer it to the world.
+              </p>
             </div>
             
-            <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <img 
-                  src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/fc2a6403c_pryimapic.pdf" 
-                  alt="Chad Thomas" 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F1E]/80 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <div className="font-bold text-lg">Chad Thomas</div>
-                  <div className="text-sm text-[#FF4A00]">Founder & Engineer</div>
-                </div>
-              </div>
+            <div className="mt-10">
+              <Link to="/signup">
+                <Button className="bg-[#FF4A00] hover:bg-[#FF5A10] text-white px-8 py-6 text-lg font-bold shadow-lg shadow-[#FF4A00]/20 w-full md:w-auto">
+                  Join Me in the Founding Cohort
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
