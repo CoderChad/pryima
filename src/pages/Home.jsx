@@ -6,6 +6,7 @@ import FeatureShowcase from "../components/home/FeatureShowcase";
 import PersonasSection from "../components/home/PersonasSection";
 import WhyPryima from "../components/home/WhyPryima";
 import DataStackSection from "../components/home/DataStackSection";
+import HowPryimaLearnsYou from "../components/home/HowPryimaLearnsYou";
 import PricingSection from "../components/home/PricingSection";
 import WearablesIntegration from "../components/home/WearablesIntegration";
 import BottomCTA from "../components/home/BottomCTA";
@@ -19,6 +20,7 @@ export default function Home() {
       <PersonasSection />
       <WhyPryima />
       <DataStackSection />
+      <HowPryimaLearnsYou />
       <PricingSection />
       <WearablesIntegration />
       <BottomCTA />
