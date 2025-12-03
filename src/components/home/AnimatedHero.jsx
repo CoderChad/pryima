@@ -132,11 +132,11 @@ export default function AnimatedHero() {
       <Lightning />
       
       {/* Background Logo */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none -translate-y-32">
         <img 
           src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/876b3378f_20250914_2023_BlackBackgroundLogo_remix_01k55fe37weqq81p9zc23pxbc61.png" 
           alt="Pryima Background Logo" 
-          className="w-[80%] max-w-[1000px] object-contain opacity-30 mix-blend-screen"
+          className="w-[150%] max-w-none object-contain opacity-30 mix-blend-screen"
         />
       </div>
 
@@ -197,7 +197,7 @@ export default function AnimatedHero() {
           </div>
 
           {/* Right Content - Video/App Demo */}
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center lg:translate-x-12">
             {/* Main App Demo - Floating with Parallax */}
             <motion.div 
               animate={{ y: [0, -10, 0] }}
