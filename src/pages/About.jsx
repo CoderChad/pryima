@@ -66,7 +66,7 @@ export default function About() {
             <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-tr from-[#FF4A00]/10 to-transparent mix-blend-overlay z-10" />
               <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/454a8138f_pryimapic.pdf" 
+                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/431cd5e75_pryimapic.pdf" 
                 alt="Chad Thomas" 
                 className="w-full h-full object-cover"
               />
