@@ -36,14 +36,15 @@ export default function DataStackSection() {
   ];
 
   return (
-    <section className="relative py-20 bg-gradient-to-b from-[#050814] to-[#02040A] overflow-hidden">
-      {/* Animated background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle, #FF4A00 1px, transparent 1px)`,
-          backgroundSize: '50px 50px',
-          animation: 'float 20s infinite linear'
-        }} />
+    <section className="relative py-20 overflow-hidden bg-[#02040A]">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[#02040A]/80 z-10" />
+        <img 
+          src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69156bec7bead1484355f40e/6dc6b8c71_IMG_0157.jpg" 
+          alt="Health Stack Background" 
+          className="w-full h-full object-cover opacity-60 grayscale"
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
