@@ -28,21 +28,22 @@ export default function Cart() {
 
   const handleCheckout = async () => {
     if (!validateEmail(email)) {
+      toast.error('Please enter a valid email address.')
       return
     }
 
     if (cartItems.length === 0) {
-      toast.error('Your cart is empty')
+      toast.error('Your cart is empty.')
       return
     }
 
+    setIsCheckingOut(true)
     try {
-      setIsCheckingOut(true)
       const res = await createCheckoutSessionFromCart(cartItems, email)
       if (res?.url) {
         window.location.href = res.url
       } else {
-        throw new Error('No checkout URL returned from server')
+        toast.error('No checkout URL returned from server.')
       }
     } catch (err) {
       console.error('Checkout error:', err.message)

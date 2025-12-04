@@ -14,7 +14,6 @@ if (!stripeKey) {
   const msg = 'STRIPE_SECRET_KEY not set. Set it in your environment before using Stripe endpoints.'
   if (isDev) console.warn(msg)
   else throw new Error(msg)
-}
 
 const stripe = new Stripe(stripeKey, { apiVersion: '2024-06-20' })
 
@@ -109,25 +108,6 @@ function isValidEmail(email) {
  * - Add to onboarding queue
  * - Sync with CRM, email lists, etc.
  */
-async function handleSuccessfulPurchase({ tier, tierName, customerEmail, sessionId }) {
-  if (isDev) {
-    console.log('\n📦 Purchase Successful:', {
-      tier,
-      tierName,
-      customerEmail,
-      sessionId,
-      timestamp: new Date().toISOString()
-    })
-  }
-
-  // TODO: Implement your business logic here:
-  // 1. Create/update user record
-  // 2. Mark user as paid for this tier
-  // 3. Send welcome email
-  // 4. Create onboarding record
-  // 5. Sync with external services
-
-  // Example stubbed implementation:
   // const user = await db.users.upsert({
   //   email: customerEmail,
   //   tier,

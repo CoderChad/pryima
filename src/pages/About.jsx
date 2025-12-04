@@ -15,35 +15,38 @@ export default function About() {
     { icon: Zap, text: "Continuous learning models that refine your protocol daily, not yearly" }
   ];
 
-  const whyPoints = [
-    "Connects genetics, blood work, microbiome, wearable data, and real-time physiology into one system",
-    "Gives people the type of personalized coaching that was once only available to elite athletes and concierge medicine clients",
-    "Adapts to your life situation, stress levels, environment, and goals over time",
-    "Makes data feel human, not clinical—something you can use, not something that overwhelms you",
-    "Protects your privacy with HIPAA-aware flows, consent-based data sharing, and optional zero-knowledge modes",
-    "Grows more intelligent with every input, turning into a lifelong precision-health companion"
-  ];
-
   return (
     <div className="min-h-screen bg-[#02040A] text-white">
-      {/* Hero / Header */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#FF4A00]/5 to-transparent pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              About the Creator — <br/>
-              <span className="bg-gradient-to-r from-[#FF4A00] to-[#FF6B00] bg-clip-text text-transparent">
-                Chad Thomas
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 font-light italic">
-              "I built Pryima because I was tired of the guesswork."
-            </p>
+      {/* Forced Portrait Image at Top */}
+      <div className="flex justify-center pt-16 pb-8">
+        <img
+          src="/prof1-optimized.jpg"
+          alt="Chad Thomas - Founder of Pryima"
+          className="rounded-2xl border-2 border-[#FF4A00]/30 shadow-2xl shadow-[#FF4A00]/20 max-w-md w-full object-contain"
+          style={{ background: '#18181b' }}
+          loading="eager"
+        />
+      </div>
+      {/* ...existing code... */}
+                    console.error('❌ Image failed to load. Path:', e.target.src);
+                    console.error('Full error:', e);
+                  }}
+                />
+                <img
+                  src="/prof1-optimized.jpg"
+                  alt="Chad Thomas - Founder of Pryima"
+                  className="w-full h-auto object-contain block"
+                  loading="eager"
+                  onLoad={(e) => {
+                    console.log('✅ Image loaded successfully:', e.target.src);
+                  }}
+                  onError={(e) => {
+                    console.error('❌ Image failed to load. Path:', e.target.src);
+                    console.error('Full error:', e);
+                  }}
+                />
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -51,53 +54,18 @@ export default function About() {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-24">
         
-        {/* Introduction & Portrait */}
+        {/* Introduction */}
         <section className="max-w-3xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start mb-8">
-            {/* Portrait Image */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="relative rounded-2xl overflow-hidden border-2 border-[#FF4A00]/30 shadow-2xl shadow-[#FF4A00]/20 bg-gradient-to-br from-[#FF4A00]/10 to-cyan-500/10">
-                <img
-                  src="/prof1.jpg"
-                  alt="Chad Thomas - Founder of Pryima"
-                  className="w-full h-auto object-cover"
-                  onError={(e) => {
-                    // Hide image if it fails to load, show placeholder
-                    e.target.style.display = 'none';
-                    const placeholder = e.target.nextElementSibling;
-                    if (placeholder) placeholder.style.display = 'flex';
-                  }}
-                />
-                {/* Placeholder shown if image doesn't exist yet */}
-                <div className="hidden absolute inset-0 bg-gradient-to-br from-[#FF4A00]/20 to-cyan-500/20 flex items-center justify-center">
-                  <div className="text-center p-6">
-                    <div className="w-24 h-24 rounded-full bg-[#FF4A00]/30 mx-auto mb-4 flex items-center justify-center">
-                      <Heart className="w-12 h-12 text-[#FF4A00]/50" />
-                    </div>
-                    <p className="text-gray-400 text-sm mb-2">Portrait image</p>
-                    <p className="text-gray-500 text-xs">Place chad-thomas-portrait.jpg in /public folder</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-            
-            {/* Text Content */}
-            <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
-              <p>
-                For years, I obsessed over understanding why some people seem to unlock high-performance lives—stable energy, better recovery, sharper cognition, faster fat loss—while others with the same discipline couldn't.
-              </p>
-              <p>
-                I realized the difference wasn't motivation or willpower. <strong className="text-white">The difference was information.</strong> Some people had access to structured data, clinical insight, and personalized coaching. Most people didn't.
-              </p>
-              <p className="text-white font-medium border-l-4 border-[#FF4A00] pl-4">
-                Pryima was born to close that gap.
-              </p>
-            </div>
+          <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
+            <p>
+              For years, I obsessed over understanding why some people seem to unlock high-performance lives—stable energy, better recovery, sharper cognition, faster fat loss—while others with the same discipline couldn't.
+            </p>
+            <p>
+              I realized the difference wasn't motivation or willpower. <strong className="text-white">The difference was information.</strong> Some people had access to structured data, clinical insight, and personalized coaching. Most people didn't.
+            </p>
+            <p className="text-white font-medium border-l-4 border-[#FF4A00] pl-4">
+              Pryima was born to close that gap.
+            </p>
           </div>
         </section>
 
